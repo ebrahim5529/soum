@@ -1,0 +1,43 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+
+class Property extends Model
+{
+    protected $fillable = [
+        'title', 'description', 'price', 'area', 'bedrooms', 'bathrooms',
+        'floors', 'floor_number', 'property_type_id', 'service_type_id',
+        'city_id', 'district', 'status', 'featured_status', 'likes_count',
+        'main_image', 'is_featured'
+    ];
+
+    protected $casts = [
+        'price' => 'decimal:2',
+        'area' => 'decimal:2',
+        'is_featured' => 'boolean',
+    ];
+
+    public function propertyType(): BelongsTo
+    {
+        return $this->belongsTo(PropertyType::class);
+    }
+
+    public function serviceType(): BelongsTo
+    {
+        return $this->belongsTo(ServiceType::class);
+    }
+
+    public function city(): BelongsTo
+    {
+        return $this->belongsTo(City::class);
+    }
+
+    public function images(): HasMany
+    {
+        return $this->hasMany(PropertyImage::class)->orderBy('order');
+    }
+}

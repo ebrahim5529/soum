@@ -1,0 +1,74 @@
+@php use Illuminate\Support\Str; @endphp
+<x-admin>
+    <x-slot:title>إدارة الخدمات</x-slot:title>
+
+    <div class="flex items-center justify-between mb-6">
+        <h2 class="text-3xl font-bold text-gray-800">إدارة الخدمات</h2>
+        <a href="{{ route('admin.services.create') }}" class="bg-primary text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors">
+            <i class="ri-add-line ml-2"></i>
+            إضافة خدمة جديدة
+        </a>
+    </div>
+
+    <div class="bg-white rounded-xl shadow-lg overflow-hidden">
+        <div class="overflow-x-auto">
+            <table class="w-full">
+                <thead class="bg-gray-50">
+                    <tr>
+                        <th class="text-right py-4 px-6 text-gray-700 font-semibold">الأيقونة</th>
+                        <th class="text-right py-4 px-6 text-gray-700 font-semibold">العنوان</th>
+                        <th class="text-right py-4 px-6 text-gray-700 font-semibold">الوصف</th>
+                        <th class="text-right py-4 px-6 text-gray-700 font-semibold">الترتيب</th>
+                        <th class="text-right py-4 px-6 text-gray-700 font-semibold">الإجراءات</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @forelse($services as $service)
+                        <tr class="border-b border-gray-100 hover:bg-gray-50">
+                            <td class="py-4 px-6">
+                                <div class="w-12 h-12 rounded-full flex items-center justify-center" style="background-color: {{ $service->icon_color == 'blue' ? '#3b82f6' : ($service->icon_color == 'green' ? '#10b981' : ($service->icon_color == 'purple' ? '#a855f7' : ($service->icon_color == 'orange' ? '#f97316' : ($service->icon_color == 'teal' ? '#14b8a6' : '#ef4444')))) }}">
+                                    <i class="{{ $service->icon }} text-2xl text-white"></i>
+                                </div>
+                            </td>
+                            <td class="py-4 px-6">
+                                <div class="font-semibold text-gray-800">{{ $service->title }}</div>
+                            </td>
+                            <td class="py-4 px-6">
+                                <div class="text-sm text-gray-600">{{ Str::limit($service->description, 60) }}</div>
+                            </td>
+                            <td class="py-4 px-6">
+                                <span class="text-gray-700">{{ $service->order }}</span>
+                            </td>
+                            <td class="py-4 px-6">
+                                <div class="flex items-center gap-3">
+                                    <a href="{{ route('admin.services.edit', $service) }}" class="text-primary hover:text-blue-700">
+                                        <i class="ri-edit-line text-xl"></i>
+                                    </a>
+                                    <form action="{{ route('admin.services.destroy', $service) }}" method="POST" onsubmit="return confirm('هل أنت متأكد من الحذف؟')">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="text-red-500 hover:text-red-700">
+                                            <i class="ri-delete-bin-line text-xl"></i>
+                                        </button>
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
+                    @empty
+                        <tr>
+                            <td colspan="5" class="py-12 text-center text-gray-500">
+                                <i class="ri-inbox-line text-4xl mb-4 block"></i>
+                                لا توجد خدمات
+                            </td>
+                        </tr>
+                    @endforelse
+                </tbody>
+            </table>
+        </div>
+
+        <div class="px-6 py-4 border-t border-gray-200">
+            {{ $services->links() }}
+        </div>
+    </div>
+</x-admin>
+
