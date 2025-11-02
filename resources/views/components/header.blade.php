@@ -1,9 +1,9 @@
 <header class="bg-white shadow-md sticky top-0 z-50" style="padding-top: 15px; padding-bottom: 15px;">
     <div class="container mx-auto px-4">
-        <div class="flex items-center justify-between h-16">
+        <div class="flex items-center justify-between h-20">
             <div class="flex items-center gap-8">
                 <a href="{{ route('home') }}" class="flex items-center bg-white/80 backdrop-blur-sm rounded-lg px-2 py-1">
-                    <img src="{{ asset('build/assets/logo.png') }}" alt="سوم العقارية" class="h-12 w-auto object-contain" style="max-width: 150px;">
+                    <img src="{{ asset('build/assets/logo.png') }}" alt="سوم العقارية" class="h-16 w-auto object-contain" style="max-width: 200px;">
                 </a>
                 <nav class="hidden md:flex items-center gap-6">
                     <a href="{{ route('home') }}" class="text-gray-700 hover:text-primary transition-colors">الرئيسية</a>
@@ -19,8 +19,9 @@
                         لوحة التحكم
                     </a>
                 @else
-                    <a href="" class="bg-primary text-white px-6 py-2 !rounded-button whitespace-nowrap hover:opacity-90 transition-colors">
-تواصل معنا                    </a>
+                    <button onclick="window.dispatchEvent(new CustomEvent('open-contact-modal'))" class="bg-primary text-white px-6 py-2 !rounded-button whitespace-nowrap hover:opacity-90 transition-colors">
+                        تواصل معنا
+                    </button>
                 @endauth
                 <button class="md:hidden w-8 h-8 flex items-center justify-center">
                     <i class="ri-menu-line text-xl"></i>

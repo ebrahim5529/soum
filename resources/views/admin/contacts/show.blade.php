@@ -39,7 +39,11 @@
                 <div class="bg-gray-50 rounded-lg p-4">
                     <label class="block text-gray-600 text-sm mb-1">البريد الإلكتروني</label>
                     <p class="text-gray-800 font-semibold text-lg">
-                        <a href="mailto:{{ $contact->email }}" class="text-primary hover:underline">{{ $contact->email }}</a>
+                        @if($contact->email)
+                            <a href="mailto:{{ $contact->email }}" class="text-primary hover:underline">{{ $contact->email }}</a>
+                        @else
+                            <span class="text-gray-500">غير متوفر</span>
+                        @endif
                     </p>
                 </div>
 

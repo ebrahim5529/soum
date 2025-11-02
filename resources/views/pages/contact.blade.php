@@ -142,11 +142,8 @@
                                 </div>
                                 <div>
                                     <h3 class="font-bold text-gray-800 mb-2 text-lg">الهاتف</h3>
-                                    <a href="tel:+966501234567" class="text-gray-600 hover:text-primary transition-colors block mb-1">
-                                        +966 50 123 4567
-                                    </a>
-                                    <a href="tel:+966112345678" class="text-gray-600 hover:text-primary transition-colors block">
-                                        +966 11 234 5678
+                                    <a href="tel:+966500179969" class="text-gray-600 hover:text-primary transition-colors block">
+                                        +966 50 017 9969
                                     </a>
                                 </div>
                             </div>
@@ -157,11 +154,8 @@
                                 </div>
                                 <div>
                                     <h3 class="font-bold text-gray-800 mb-2 text-lg">البريد الإلكتروني</h3>
-                                    <a href="mailto:info@realestate.com" class="text-gray-600 hover:text-primary transition-colors block mb-1">
-                                        info@realestate.com
-                                    </a>
-                                    <a href="mailto:support@realestate.com" class="text-gray-600 hover:text-primary transition-colors block">
-                                        support@realestate.com
+                                    <a href="mailto:Soum6050@hotmail.com" class="text-gray-600 hover:text-primary transition-colors block">
+                                        Soum6050@hotmail.com
                                     </a>
                                 </div>
                             </div>
@@ -184,23 +178,11 @@
                         <h2 class="text-2xl md:text-3xl font-bold mb-6">تابعنا على</h2>
                         <p class="text-white/90 mb-6">تواصل معنا عبر وسائل التواصل الاجتماعي</p>
                         <div class="flex flex-wrap gap-4">
-                            <a href="#" class="w-14 h-14 bg-white/20 backdrop-blur-sm rounded-xl flex items-center justify-center text-white hover:bg-white hover:text-blue-600 transition-all transform hover:scale-110 shadow-lg">
-                                <i class="ri-facebook-fill text-2xl"></i>
+                            <a href="https://snapchat.com/t/P7CPqsOo" target="_blank" rel="noopener noreferrer" class="w-14 h-14 bg-white/20 backdrop-blur-sm rounded-xl flex items-center justify-center text-white hover:bg-white hover:text-yellow-500 transition-all transform hover:scale-110 shadow-lg" title="Snapchat">
+                                <i class="ri-snapchat-fill text-2xl"></i>
                             </a>
-                            <a href="#" class="w-14 h-14 bg-white/20 backdrop-blur-sm rounded-xl flex items-center justify-center text-white hover:bg-white hover:text-blue-400 transition-all transform hover:scale-110 shadow-lg">
-                                <i class="ri-twitter-fill text-2xl"></i>
-                            </a>
-                            <a href="#" class="w-14 h-14 bg-white/20 backdrop-blur-sm rounded-xl flex items-center justify-center text-white hover:bg-white hover:text-pink-600 transition-all transform hover:scale-110 shadow-lg">
-                                <i class="ri-instagram-fill text-2xl"></i>
-                            </a>
-                            <a href="#" class="w-14 h-14 bg-white/20 backdrop-blur-sm rounded-xl flex items-center justify-center text-white hover:bg-white hover:text-blue-700 transition-all transform hover:scale-110 shadow-lg">
-                                <i class="ri-linkedin-fill text-2xl"></i>
-                            </a>
-                            <a href="#" class="w-14 h-14 bg-white/20 backdrop-blur-sm rounded-xl flex items-center justify-center text-white hover:bg-white hover:text-red-600 transition-all transform hover:scale-110 shadow-lg">
-                                <i class="ri-youtube-fill text-2xl"></i>
-                            </a>
-                            <a href="#" class="w-14 h-14 bg-white/20 backdrop-blur-sm rounded-xl flex items-center justify-center text-white hover:bg-white hover:text-green-500 transition-all transform hover:scale-110 shadow-lg">
-                                <i class="ri-whatsapp-fill text-2xl"></i>
+                            <a href="https://www.tiktok.com/@soum6050?_r=1&_t=ZS-912b6Vl8Dzz" target="_blank" rel="noopener noreferrer" class="w-14 h-14 bg-white/20 backdrop-blur-sm rounded-xl flex items-center justify-center text-white hover:bg-white hover:text-primary transition-all transform hover:scale-110 shadow-lg" title="TikTok">
+                                <i class="ri-tiktok-fill text-2xl"></i>
                             </a>
                         </div>
                     </div>

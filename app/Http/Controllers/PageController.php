@@ -21,7 +21,7 @@ class PageController extends Controller
     {
         $validated = $request->validate([
             'name' => 'required|string|max:255',
-            'email' => 'required|email|max:255',
+            'email' => 'nullable|email|max:255',
             'phone' => 'required|string|max:255',
             'subject' => 'required|string|max:255',
             'message' => 'required|string',
@@ -29,7 +29,15 @@ class PageController extends Controller
 
         Contact::create($validated);
 
-        return redirect()->route('contact')
+        // Check if request is from modal (AJAX or has referrer)
+        if ($request->ajax() || $request->header('X-Requested-With') === 'XMLHttpRequest') {
+            return response()->json([
+                'success' => true,
+                'message' => 'شكراً لك! تم إرسال رسالتك بنجاح وسنتواصل معك قريباً.'
+            ]);
+        }
+
+        return redirect()->back()
             ->with('success', 'شكراً لك! تم إرسال رسالتك بنجاح وسنتواصل معك قريباً.');
     }
 }

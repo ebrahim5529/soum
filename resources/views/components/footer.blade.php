@@ -7,14 +7,11 @@
                 </a>
                 <p class="text-gray-300 mb-4">مكتبك العقاري الموثوق لجميع احتياجاتك العقارية</p>
                 <div class="flex gap-4">
-                    <a href="#" class="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center hover:bg-primary transition-colors">
-                        <i class="ri-facebook-fill"></i>
+                    <a href="https://snapchat.com/t/P7CPqsOo" target="_blank" rel="noopener noreferrer" class="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center hover:bg-yellow-500 transition-colors">
+                        <i class="ri-snapchat-fill"></i>
                     </a>
-                    <a href="#" class="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center hover:bg-primary transition-colors">
-                        <i class="ri-twitter-fill"></i>
-                    </a>
-                    <a href="#" class="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center hover:bg-primary transition-colors">
-                        <i class="ri-instagram-fill"></i>
+                    <a href="https://www.tiktok.com/@soum6050?_r=1&_t=ZS-912b6Vl8Dzz" target="_blank" rel="noopener noreferrer" class="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center hover:bg-primary transition-colors">
+                        <i class="ri-tiktok-fill"></i>
                     </a>
                 </div>
             </div>
@@ -41,11 +38,19 @@
                 <div class="space-y-3 text-gray-300">
                     <div class="flex items-center gap-3">
                         <i class="ri-phone-line"></i>
-                        <span>+966 50 123 4567</span>
+                        <a href="tel:+966500179969" class="hover:text-white transition-colors">+966 50 017 9969</a>
                     </div>
                     <div class="flex items-center gap-3">
                         <i class="ri-mail-line"></i>
-                        <span>info@realestate.com</span>
+                        <a href="mailto:Soum6050@hotmail.com" class="hover:text-white transition-colors">Soum6050@hotmail.com</a>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <i class="ri-snapchat-line"></i>
+                        <a href="https://snapchat.com/t/P7CPqsOo" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors">Snapchat</a>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <i class="ri-tiktok-line"></i>
+                        <a href="https://www.tiktok.com/@soum6050?_r=1&_t=ZS-912b6Vl8Dzz" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors">TikTok</a>
                     </div>
                     <div class="flex items-center gap-3">
                         <i class="ri-map-pin-line"></i>

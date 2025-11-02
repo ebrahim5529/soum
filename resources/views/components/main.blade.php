@@ -19,6 +19,8 @@
 </head>
 <body class="bg-gray-50 font-sans antialiased" style="font-family: 'Tajawal', sans-serif;">
     <x-header />
+    
+    <x-contact-modal />
 
     <main>
         {{ $slot }}
