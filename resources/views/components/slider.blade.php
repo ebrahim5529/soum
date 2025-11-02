@@ -1,5 +1,6 @@
 @props(['sliders'])
 
+@if($sliders && $sliders->count() > 0)
 <section class="slider-container h-[600px] relative">
     @foreach($sliders as $index => $slider)
         <div class="slide {{ $index === 0 ? 'active' : '' }}" style="background-image: url('{{ $slider->background_image }}'); background-size: cover; background-position: center;">
@@ -152,8 +153,17 @@ document.addEventListener('DOMContentLoaded', function() {
         sliderContainer.addEventListener('mouseleave', startAutoSlide);
     }
 
-    startAutoSlide();
+    if (slides.length > 0) {
+        startAutoSlide();
+    }
 });
 </script>
 @endpush
-
+@else
+<section class="hero-section h-[600px] relative bg-gradient-to-br from-blue-900 to-blue-700 flex items-center justify-center">
+    <div class="container mx-auto px-4 text-center text-white">
+        <h1 class="text-5xl font-bold mb-4">مرحباً بك في منصة عقار</h1>
+        <p class="text-xl mb-8">منصة شاملة لإدارة وبيع العقارات</p>
+    </div>
+</section>
+@endif
