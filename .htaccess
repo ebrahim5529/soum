@@ -1,5 +1,32 @@
 <IfModule mod_rewrite.c>
     RewriteEngine On
+    
+    # Redirect all requests to public folder
     RewriteRule ^(.*)$ public/$1 [L]
+    
+    # Force HTTPS (optional - uncomment if you want to force HTTPS)
+    # RewriteCond %{HTTPS} off
+    # RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 </IfModule>
 
+# Security Headers
+<IfModule mod_headers.c>
+    Header set X-Content-Type-Options "nosniff"
+    Header set X-Frame-Options "SAMEORIGIN"
+    Header set X-XSS-Protection "1; mode=block"
+    Header set Referrer-Policy "strict-origin-when-cross-origin"
+</IfModule>
+
+# Prevent Directory Listing
+Options -Indexes
+
+# Protect sensitive files
+<FilesMatch "^\.">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+<FilesMatch "(composer\.(json|lock)|package(-lock)?\.json|\.env|\.git)">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
