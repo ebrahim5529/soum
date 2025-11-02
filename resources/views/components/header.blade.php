@@ -13,16 +13,7 @@
                     <a href="{{ route('contact') }}" class="text-gray-700 hover:text-primary transition-colors">اتصل بنا</a>
                 </nav>
             </div>
-            <div class="flex items-center gap-4">
-                @auth
-                    <a href="{{ route('dashboard') }}" class="bg-primary text-white px-6 py-2 !rounded-button whitespace-nowrap hover:opacity-90 transition-colors">
-                        لوحة التحكم
-                    </a>
-                @else
-                    <a href="{{ route('login') }}" class="bg-primary text-white px-6 py-2 !rounded-button whitespace-nowrap hover:opacity-90 transition-colors">
-                        تسجيل الدخول
-                    </a>
-                @endauth
+           
                 <button class="md:hidden w-8 h-8 flex items-center justify-center">
                     <i class="ri-menu-line text-xl"></i>
                 </button>

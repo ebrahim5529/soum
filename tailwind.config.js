@@ -28,7 +28,7 @@ export default {
                 'button': '8px',
             },
             fontFamily: {
-                sans: ['Amiri', 'serif', ...defaultTheme.fontFamily.sans],
+                sans: ['Tajawal', 'sans-serif', ...defaultTheme.fontFamily.sans],
             },
         },
     },
