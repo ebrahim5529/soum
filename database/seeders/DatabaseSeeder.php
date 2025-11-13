@@ -9,12 +9,14 @@ class DatabaseSeeder extends Seeder
 {
     public function run(): void
     {
-        // إنشاء مستخدم مسؤول
-        User::create([
-            'name' => 'Admin',
-            'email' => 'admin@example.com',
-            'password' => bcrypt('password'),
-        ]);
+        // إنشاء مستخدم مسؤول (مع تجنب التكرار)
+        User::updateOrCreate(
+            ['email' => 'admin@example.com'],
+            [
+                'name' => 'Admin',
+                'password' => bcrypt('password'),
+            ]
+        );
 
         // تشغيل Seeders بالترتيب
         $this->call([

@@ -1,5 +1,20 @@
 @props(['property'])
 
+@php
+    $isModel = $property instanceof \App\Models\Property;
+    $cityName = $isModel ? optional($property->city)->name : ($property->city_name ?? null);
+    $district = $property->district ?? null;
+    $propertyTypeName = $isModel
+        ? optional($property->propertyType)->name . ($property->floor_number ? ' - ' . $property->floor_number : '')
+        : ($property->property_type_name ?? null);
+    $propertyTypeIcon = $isModel ? optional($property->propertyType)->icon : ($property->property_type_icon ?? 'ri-home-line');
+    $area = $property->area ?? null;
+    $price = $property->price ?? null;
+    $serviceTypeName = $isModel ? optional($property->serviceType)->name : ($property->service_type_name ?? null);
+    $detailsUrl = $isModel ? route('properties.show', $property->id) : ($property->details_url ?? '#');
+    $isRent = $serviceTypeName === 'للإيجار';
+@endphp
+
 <div class="property-card bg-white rounded-2xl overflow-hidden shadow-lg">
     <div class="relative">
         <img src="{{ $property->main_image }}" alt="{{ $property->title }}" class="w-full h-64 object-cover object-top">
@@ -25,26 +40,40 @@
         <h3 class="text-xl font-bold text-gray-800 mb-2">{{ $property->title }}</h3>
         <div class="flex items-center gap-2 text-gray-600 mb-3">
             <i class="ri-map-pin-line text-primary"></i>
-            <span>{{ $property->city->name }} - {{ $property->district }}</span>
+            <span>
+                @if($cityName)
+                    {{ $cityName }}
+                @endif
+                @if($cityName && $district)
+                    -
+                @endif
+                @if($district)
+                    {{ $district }}
+                @endif
+            </span>
         </div>
         <div class="grid grid-cols-2 gap-4 mb-4 text-sm text-gray-600">
             <div class="flex items-center gap-2">
-                <i class="{{ $property->propertyType->icon }}"></i>
-                <span>{{ $property->propertyType->name }}@if($property->floor_number) - {{ $property->floor_number }}@endif</span>
+                <i class="{{ $propertyTypeIcon }}"></i>
+                <span>{{ $propertyTypeName }}</span>
             </div>
             <div class="flex items-center gap-2">
                 <i class="ri-ruler-line"></i>
-                <span>{{ number_format($property->area, 0) }} م²</span>
+                @if(! is_null($area))
+                    <span>{{ number_format($area, 0) }} م²</span>
+                @endif
             </div>
         </div>
         <div class="flex items-center justify-between">
             <div class="text-2xl font-bold text-primary">
-                {{ number_format($property->price, 0) }} ريال
-                @if($property->serviceType->name === 'للإيجار')
+                @if(! is_null($price))
+                    {{ number_format($price, 0) }} ريال
+                @endif
+                @if($isRent)
                     /شهر
                 @endif
             </div>
-            <a href="{{ route('properties.show', $property->id) }}" class="bg-primary text-white px-4 py-2 !rounded-button whitespace-nowrap hover:bg-blue-700 transition-colors text-sm">
+            <a href="{{ $detailsUrl }}" class="bg-primary text-white px-4 py-2 !rounded-button whitespace-nowrap hover:bg-blue-700 transition-colors text-sm">
                 عرض التفاصيل
             </a>
         </div>
