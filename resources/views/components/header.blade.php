@@ -16,11 +16,11 @@
             </div>
             <div class="flex items-center gap-4">
                 @auth
-                    <a href="{{ route('dashboard') }}" class="bg-primary text-white px-6 py-2 !rounded-button whitespace-nowrap hover:opacity-90 transition-colors hidden md:inline-block">
+                    <a href="{{ route('dashboard') }}" class="bg-primary text-white px-4 md:px-6 py-2 !rounded-button whitespace-nowrap hover:opacity-90 transition-colors text-sm md:text-base">
                         لوحة التحكم
                     </a>
                 @else
-                    <button onclick="window.dispatchEvent(new CustomEvent('open-contact-modal'))" class="bg-primary text-white px-6 py-2 !rounded-button whitespace-nowrap hover:opacity-90 transition-colors hidden md:inline-block">
+                    <button onclick="window.dispatchEvent(new CustomEvent('open-contact-modal'))" class="bg-primary text-white px-4 md:px-6 py-2 !rounded-button whitespace-nowrap hover:opacity-90 transition-colors text-sm md:text-base">
                         نستقبل طلباتكم هنا
                     </button>
                 @endauth
@@ -40,7 +40,8 @@
              x-transition:leave-start="opacity-100 transform translate-y-0"
              x-transition:leave-end="opacity-0 transform -translate-y-2"
              class="md:hidden border-t border-gray-200 mt-4 pt-4 pb-4"
-             style="display: none;">
+             style="display: none;"
+             x-cloak>
             <nav class="flex flex-col gap-4">
                 <a href="{{ route('home') }}" 
                    @click="mobileMenuOpen = false"
