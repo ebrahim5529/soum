@@ -33,7 +33,7 @@
       @close-sidebar.window="sidebarOpen = false">
     <div class="min-h-screen flex">
         <!-- Backdrop -->
-        <div x-show="sidebarOpen" 
+        <div x-show="sidebarOpen && !isDesktop" 
              @click="sidebarOpen = false"
              x-transition:enter="transition-opacity ease-linear duration-300"
              x-transition:enter-start="opacity-0"
@@ -56,6 +56,7 @@
                x-transition:leave="transition ease-in duration-300 transform"
                x-transition:leave-start="translate-x-0"
                x-transition:leave-end="translate-x-full"
+               @keydown.escape.window="!isDesktop && (sidebarOpen = false)"
                style="display: none;"
                x-cloak>
             <div class="p-6">
@@ -67,32 +68,32 @@
                 </div>
                 
                 <nav class="space-y-2">
-                    <a href="{{ route('admin.dashboard') }}" @click="window.matchMedia('(max-width: 767px)').matches && (sidebarOpen = false)" class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-gray-700 transition-colors {{ request()->routeIs('admin.dashboard') ? 'bg-primary' : '' }}">
+                    <a href="{{ route('admin.dashboard') }}" @click="!isDesktop && (sidebarOpen = false)" class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-gray-700 transition-colors {{ request()->routeIs('admin.dashboard') ? 'bg-primary' : '' }}">
                         <i class="ri-dashboard-line"></i>
                         <span>لوحة التحكم</span>
                     </a>
-                    <a href="{{ route('admin.properties.index') }}" @click="window.matchMedia('(max-width: 767px)').matches && (sidebarOpen = false)" class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-gray-700 transition-colors {{ request()->routeIs('admin.properties.*') ? 'bg-primary' : '' }}">
+                    <a href="{{ route('admin.properties.index') }}" @click="!isDesktop && (sidebarOpen = false)" class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-gray-700 transition-colors {{ request()->routeIs('admin.properties.*') ? 'bg-primary' : '' }}">
                         <i class="ri-home-line"></i>
                         <span>العقارات</span>
                     </a>
-                    <a href="{{ route('admin.sliders.index') }}" @click="window.matchMedia('(max-width: 767px)').matches && (sidebarOpen = false)" class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-gray-700 transition-colors {{ request()->routeIs('admin.sliders.*') ? 'bg-primary' : '' }}">
+                    <a href="{{ route('admin.sliders.index') }}" @click="!isDesktop && (sidebarOpen = false)" class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-gray-700 transition-colors {{ request()->routeIs('admin.sliders.*') ? 'bg-primary' : '' }}">
                         <i class="ri-slideshow-line"></i>
                         <span>الشرائح</span>
                     </a>
-                    <a href="{{ route('admin.services.index') }}" @click="window.matchMedia('(max-width: 767px)').matches && (sidebarOpen = false)" class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-gray-700 transition-colors {{ request()->routeIs('admin.services.*') ? 'bg-primary' : '' }}">
+                    <a href="{{ route('admin.services.index') }}" @click="!isDesktop && (sidebarOpen = false)" class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-gray-700 transition-colors {{ request()->routeIs('admin.services.*') ? 'bg-primary' : '' }}">
                         <i class="ri-service-line"></i>
                         <span>الخدمات</span>
                     </a>
-                    <a href="{{ route('admin.blog.index') }}" @click="window.matchMedia('(max-width: 767px)').matches && (sidebarOpen = false)" class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-gray-700 transition-colors {{ request()->routeIs('admin.blog.*') ? 'bg-primary' : '' }}">
+                    <a href="{{ route('admin.blog.index') }}" @click="!isDesktop && (sidebarOpen = false)" class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-gray-700 transition-colors {{ request()->routeIs('admin.blog.*') ? 'bg-primary' : '' }}">
                         <i class="ri-article-line"></i>
                         <span>المدونة</span>
                     </a>
-                    <a href="{{ route('admin.contacts.index') }}" @click="window.matchMedia('(max-width: 767px)').matches && (sidebarOpen = false)" class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-gray-700 transition-colors {{ request()->routeIs('admin.contacts.*') ? 'bg-primary' : '' }}">
+                    <a href="{{ route('admin.contacts.index') }}" @click="!isDesktop && (sidebarOpen = false)" class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-gray-700 transition-colors {{ request()->routeIs('admin.contacts.*') ? 'bg-primary' : '' }}">
                         <i class="ri-mail-line"></i>
                         <span>التواصل</span>
                     </a>
                     <div class="border-t border-gray-700 my-4"></div>
-                    <a href="{{ route('home') }}" @click="window.matchMedia('(max-width: 767px)').matches && (sidebarOpen = false)" class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-gray-700 transition-colors">
+                    <a href="{{ route('home') }}" @click="!isDesktop && (sidebarOpen = false)" class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-gray-700 transition-colors">
                         <i class="ri-global-line"></i>
                         <span>الموقع الرئيسي</span>
                     </a>
@@ -101,7 +102,7 @@
         </aside>
 
         <!-- Main Content -->
-        <div class="flex-1 mr-0 md:mr-64 w-full">
+        <div class="flex-1 w-full mr-0 md:mr-64 transition-all duration-300">
             <!-- Top Bar -->
             <header class="bg-white shadow-sm sticky top-0 z-40">
                 <div class="px-4 md:px-6 py-4 flex items-center justify-between">
