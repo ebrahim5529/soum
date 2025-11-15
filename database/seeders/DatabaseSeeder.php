@@ -18,6 +18,15 @@ class DatabaseSeeder extends Seeder
             ]
         );
 
+        // إنشاء مستخدم أدمن جديد
+        User::updateOrCreate(
+            ['email' => 'admin@soum1.com'],
+            [
+                'name' => 'مدير النظام - soum1',
+                'password' => bcrypt('admin123'),
+            ]
+        );
+
         // إنشاء مستخدم عادي للاختبار
         User::updateOrCreate(
             ['email' => 'user@aqar.com'],
