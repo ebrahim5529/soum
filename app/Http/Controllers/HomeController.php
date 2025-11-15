@@ -186,15 +186,15 @@ class HomeController extends Controller
                 : collect();
             
             $propertyTypes = Schema::hasTable('property_types') 
-                ? PropertyType::all() 
+                ? PropertyType::orderBy('name')->distinct()->get() 
                 : collect();
             
             $serviceTypes = Schema::hasTable('service_types') 
-                ? ServiceType::all() 
+                ? ServiceType::orderBy('name')->distinct()->get() 
                 : collect();
             
             $cities = Schema::hasTable('cities') 
-                ? City::all() 
+                ? City::orderBy('name')->distinct()->get() 
                 : collect();
             
             $services = Schema::hasTable('services') 

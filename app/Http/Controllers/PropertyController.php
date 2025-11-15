@@ -49,9 +49,9 @@ class PropertyController extends Controller
 
                 $properties = $query->latest()->paginate(12);
 
-                $propertyTypes = Schema::hasTable('property_types') ? PropertyType::all() : collect();
-                $serviceTypes = Schema::hasTable('service_types') ? ServiceType::all() : collect();
-                $cities = Schema::hasTable('cities') ? City::all() : collect();
+                $propertyTypes = Schema::hasTable('property_types') ? PropertyType::orderBy('name')->distinct()->get() : collect();
+                $serviceTypes = Schema::hasTable('service_types') ? ServiceType::orderBy('name')->distinct()->get() : collect();
+                $cities = Schema::hasTable('cities') ? City::orderBy('name')->distinct()->get() : collect();
             }
         } catch (\Exception $e) {
             $properties = new LengthAwarePaginator([], 0, 12, 1, ['path' => $request->url(), 'query' => $request->query()]);

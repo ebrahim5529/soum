@@ -16,7 +16,10 @@ class ServiceTypeSeeder extends Seeder
         ];
 
         foreach ($types as $type) {
-            ServiceType::create($type);
+            ServiceType::updateOrCreate(
+                ['name' => $type['name']],
+                $type
+            );
         }
     }
 }
