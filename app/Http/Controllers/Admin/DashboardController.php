@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\BlogPost;
 use App\Models\Contact;
 use App\Models\Property;
 use App\Models\Slider;
@@ -21,6 +22,8 @@ class DashboardController extends Controller
             $totalSliders = Schema::hasTable('sliders') ? Slider::count() : 0;
             $activeSliders = Schema::hasTable('sliders') ? Slider::where('is_active', true)->count() : 0;
             $totalServices = Schema::hasTable('services') ? Service::count() : 0;
+            $totalBlogPosts = Schema::hasTable('blog_posts') ? BlogPost::count() : 0;
+            $publishedBlogPosts = Schema::hasTable('blog_posts') ? BlogPost::where('is_published', true)->count() : 0;
             $totalContacts = Schema::hasTable('contacts') ? Contact::count() : 0;
             $unreadContacts = Schema::hasTable('contacts') ? Contact::where('is_read', false)->count() : 0;
 
@@ -37,6 +40,8 @@ class DashboardController extends Controller
             $totalSliders = 0;
             $activeSliders = 0;
             $totalServices = 0;
+            $totalBlogPosts = 0;
+            $publishedBlogPosts = 0;
             $totalContacts = 0;
             $unreadContacts = 0;
             $recentProperties = collect();
@@ -49,6 +54,8 @@ class DashboardController extends Controller
             'totalSliders',
             'activeSliders',
             'totalServices',
+            'totalBlogPosts',
+            'publishedBlogPosts',
             'totalContacts',
             'unreadContacts',
             'recentProperties'

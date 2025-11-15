@@ -65,18 +65,20 @@ class BlogPostController extends Controller
             ->with('success', 'تم إنشاء المقال بنجاح');
     }
 
-    public function show(BlogPost $blog)
+    public function show($id)
     {
+        $blog = BlogPost::findOrFail($id);
         $blog->load('author');
         return view('admin.blog.show', compact('blog'));
     }
 
-    public function edit(BlogPost $blog)
+    public function edit($id)
     {
+        $blog = BlogPost::findOrFail($id);
         return view('admin.blog.edit', compact('blog'));
     }
 
-    public function update(Request $request, BlogPost $blog)
+    public function update(Request $request, $id)
     {
         $validated = $request->validate([
             'title' => 'required|string|max:255',
@@ -103,6 +105,8 @@ class BlogPostController extends Controller
             $validated['slug'] = $slug;
         }
 
+        $blog = BlogPost::findOrFail($id);
+        
         $validated['is_published'] = $request->has('is_published');
         
         if (!$validated['is_published']) {
@@ -117,8 +121,9 @@ class BlogPostController extends Controller
             ->with('success', 'تم تحديث المقال بنجاح');
     }
 
-    public function destroy(BlogPost $blog)
+    public function destroy($id)
     {
+        $blog = BlogPost::findOrFail($id);
         $blog->delete();
 
         return redirect()->route('admin.blog.index')

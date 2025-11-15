@@ -19,9 +19,8 @@
     <body class="font-sans text-gray-900 antialiased" style="font-family: 'Tajawal', sans-serif;">
         <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800">
             <div class="mb-6">
-                <a href="/" class="flex items-center gap-3 text-2xl font-bold text-primary hover:text-primary/80 transition-colors">
-                    <i class="ri-home-4-line"></i>
-                    <span>العقار</span>
+                <a href="{{ route('home') }}" class="flex items-center bg-white/80 backdrop-blur-sm rounded-lg px-2 py-1">
+                    <img src="{{ asset('build/assets/logo.svg') }}" alt="سوم العقارية" class="h-16 w-auto object-contain" style="max-width: 200px;">
                 </a>
             </div>
 

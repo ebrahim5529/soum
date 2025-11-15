@@ -1,3 +1,4 @@
+@php use Illuminate\Support\Str; @endphp
 <x-admin>
     <x-slot:title>إدارة المدونة</x-slot:title>
 

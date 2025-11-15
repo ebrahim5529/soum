@@ -53,6 +53,19 @@
         <div class="bg-white rounded-xl shadow-lg p-6">
             <div class="flex items-center justify-between">
                 <div>
+                    <p class="text-gray-600 mb-2">إجمالي المقالات</p>
+                    <p class="text-3xl font-bold text-gray-800">{{ $totalBlogPosts }}</p>
+                    <p class="text-sm text-green-600 mt-1">{{ $publishedBlogPosts }} منشور</p>
+                </div>
+                <div class="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center">
+                    <i class="ri-article-line text-3xl text-primary"></i>
+                </div>
+            </div>
+        </div>
+
+        <div class="bg-white rounded-xl shadow-lg p-6">
+            <div class="flex items-center justify-between">
+                <div>
                     <p class="text-gray-600 mb-2">إجمالي الرسائل</p>
                     <p class="text-3xl font-bold text-gray-800">{{ $totalContacts }}</p>
                     @if($unreadContacts > 0)

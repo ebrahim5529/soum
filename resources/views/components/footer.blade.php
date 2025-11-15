@@ -18,20 +18,65 @@
             <div>
                 <h3 class="text-lg font-semibold mb-4">روابط سريعة</h3>
                 <ul class="space-y-2 text-gray-300">
-                    <li><a href="{{ route('home') }}" class="hover:text-white transition-colors">الرئيسية</a></li>
-                    <li><a href="{{ route('properties.index') }}" class="hover:text-white transition-colors">العقارات</a></li>
-                    <li><a href="{{ route('blog.index') }}" class="hover:text-white transition-colors">المدونة</a></li>
-                    <li><a href="{{ route('about') }}" class="hover:text-white transition-colors">من نحن</a></li>
-                    <li><a href="{{ route('contact') }}" class="hover:text-white transition-colors">اتصل بنا</a></li>
+                    <li>
+                        <a href="{{ route('home') }}" class="hover:text-white transition-colors flex items-center gap-2">
+                            <i class="ri-home-line"></i>
+                            <span>الرئيسية</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('properties.index') }}" class="hover:text-white transition-colors flex items-center gap-2">
+                            <i class="ri-building-line"></i>
+                            <span>العقارات</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('blog.index') }}" class="hover:text-white transition-colors flex items-center gap-2">
+                            <i class="ri-article-line"></i>
+                            <span>المدونة</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('about') }}" class="hover:text-white transition-colors flex items-center gap-2">
+                            <i class="ri-information-line"></i>
+                            <span>من نحن</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('contact') }}" class="hover:text-white transition-colors flex items-center gap-2">
+                            <i class="ri-phone-line"></i>
+                            <span>اتصل بنا</span>
+                        </a>
+                    </li>
                 </ul>
             </div>
             <div>
                 <h3 class="text-lg font-semibold mb-4">أنواع العقارات</h3>
                 <ul class="space-y-2 text-gray-300">
-                    <li><a href="{{ route('properties.index', ['property_type' => 1]) }}" class="hover:text-white transition-colors">فلل</a></li>
-                    <li><a href="{{ route('properties.index', ['property_type' => 2]) }}" class="hover:text-white transition-colors">شقق</a></li>
-                    <li><a href="{{ route('properties.index', ['property_type' => 3]) }}" class="hover:text-white transition-colors">أراضي</a></li>
-                    <li><a href="{{ route('properties.index', ['property_type' => 4]) }}" class="hover:text-white transition-colors">محلات تجارية</a></li>
+                    <li>
+                        <a href="{{ route('properties.index', ['property_type' => 1]) }}" class="hover:text-white transition-colors flex items-center gap-2">
+                            <i class="ri-home-3-line"></i>
+                            <span>فلل</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('properties.index', ['property_type' => 2]) }}" class="hover:text-white transition-colors flex items-center gap-2">
+                            <i class="ri-building-2-line"></i>
+                            <span>شقق</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('properties.index', ['property_type' => 3]) }}" class="hover:text-white transition-colors flex items-center gap-2">
+                            <i class="ri-map-pin-3-line"></i>
+                            <span>أراضي</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('properties.index', ['property_type' => 4]) }}" class="hover:text-white transition-colors flex items-center gap-2">
+                            <i class="ri-store-line"></i>
+                            <span>محلات تجارية</span>
+                        </a>
+                    </li>
                 </ul>
             </div>
             <div>
