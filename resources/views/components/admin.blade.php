@@ -48,8 +48,10 @@
 
         <!-- Sidebar -->
         <aside class="w-64 bg-gray-800 text-white min-h-screen fixed right-0 top-0 z-50"
-               x-show="sidebarOpen || isDesktop"
-               :class="(sidebarOpen || isDesktop) ? 'translate-x-0' : '-translate-x-full'"
+               :class="{
+                   'block translate-x-0': sidebarOpen || isDesktop,
+                   'hidden -translate-x-full': !sidebarOpen && !isDesktop
+               }"
                x-transition:enter="transition ease-out duration-300 transform"
                x-transition:enter-start="translate-x-full"
                x-transition:enter-end="translate-x-0"
@@ -57,7 +59,6 @@
                x-transition:leave-start="translate-x-0"
                x-transition:leave-end="translate-x-full"
                @keydown.escape.window="!isDesktop && (sidebarOpen = false)"
-               style="display: none;"
                x-cloak>
             <div class="p-6">
                 <div class="flex items-center justify-between mb-8">
