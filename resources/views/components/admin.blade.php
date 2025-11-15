@@ -103,7 +103,7 @@
         </aside>
 
         <!-- Main Content -->
-        <div class="flex-1 w-full mr-0 md:mr-64 transition-all duration-300">
+        <div class="w-full transition-all duration-300" style="margin-right: 0;" x-bind:style="isDesktop ? 'margin-right: 16rem;' : 'margin-right: 0;'">
             <!-- Top Bar -->
             <header class="bg-white shadow-sm sticky top-0 z-40">
                 <div class="px-4 md:px-6 py-4 flex items-center justify-between">
