@@ -67,11 +67,11 @@
     <section id="services" class="py-16 bg-white">
         <div class="container mx-auto px-4">
             <div class="text-center mb-12">
-                <h2 class="text-4xl font-bold text-gray-800 mb-4">خدماتنا العقارية</h2>
-                <p class="text-xl text-gray-600">نقدم مجموعة شاملة من الخدمات العقارية المتخصصة</p>
+                <h2 class="text-4xl font-bold text-gray-800 mb-4 service-section-title">خدماتنا العقارية</h2>
+                <p class="text-xl text-gray-600 service-section-description">نقدم مجموعة شاملة من الخدمات العقارية المتخصصة</p>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                @foreach($services as $service)
+                @foreach($services as $index => $service)
                     @php
                         $colors = [
                             'blue' => 'from-blue-50 to-blue-100',
@@ -92,8 +92,8 @@
                         $bgColor = $colors[$service->icon_color] ?? 'from-blue-50 to-blue-100';
                         $iconBg = $iconBgClasses[$service->icon_color] ?? 'bg-blue-500';
                     @endphp
-                    <div class="feature-card bg-gradient-to-br {{ $bgColor }} rounded-2xl p-8 text-center">
-                        <div class="w-16 h-16 {{ $iconBg }} rounded-full flex items-center justify-center mx-auto mb-6">
+                    <div class="feature-card bg-gradient-to-br {{ $bgColor }} rounded-2xl p-8 text-center" data-animation-delay="{{ $index * 0.1 }}">
+                        <div class="w-16 h-16 {{ $iconBg }} rounded-full flex items-center justify-center mx-auto mb-6 service-icon transition-transform duration-300">
                             <i class="{{ $service->icon }} text-2xl text-white"></i>
                         </div>
                         <h3 class="text-2xl font-bold text-gray-800 mb-4">{{ $service->title }}</h3>
@@ -140,5 +140,45 @@
             </div>
         </div>
     </section>
+
+    @push('scripts')
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Intersection Observer للعناصر
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const element = entry.target;
+                        const delay = element.dataset.animationDelay || 0;
+                        
+                        setTimeout(() => {
+                            element.classList.add('animate');
+                        }, delay * 1000);
+                        
+                        observer.unobserve(element);
+                    }
+                });
+            }, observerOptions);
+
+            // مراقبة العنوان والوصف
+            const title = document.querySelector('.service-section-title');
+            const description = document.querySelector('.service-section-description');
+            
+            if (title) observer.observe(title);
+            if (description) observer.observe(description);
+
+            // مراقبة جميع بطاقات الخدمات
+            const serviceCards = document.querySelectorAll('.feature-card');
+            serviceCards.forEach(card => {
+                observer.observe(card);
+            });
+        });
+    </script>
+    @endpush
 </x-main>
 
