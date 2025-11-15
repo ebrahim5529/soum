@@ -44,6 +44,10 @@
                         <i class="ri-service-line"></i>
                         <span>الخدمات</span>
                     </a>
+                    <a href="{{ route('admin.blog.index') }}" class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-gray-700 transition-colors {{ request()->routeIs('admin.blog.*') ? 'bg-primary' : '' }}">
+                        <i class="ri-article-line"></i>
+                        <span>المدونة</span>
+                    </a>
                     <a href="{{ route('admin.contacts.index') }}" class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-gray-700 transition-colors {{ request()->routeIs('admin.contacts.*') ? 'bg-primary' : '' }}">
                         <i class="ri-mail-line"></i>
                         <span>التواصل</span>

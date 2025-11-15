@@ -3,7 +3,7 @@
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             <div>
                 <a href="{{ route('home') }}" class="inline-block mb-4">
-                    <img src="{{ asset('build/assets/logo.png') }}" alt="سوم العقارية" class="h-12 w-auto object-contain" style="max-width: 150px; filter: brightness(1.2);">
+                    <img src="{{ asset('build/assets/logo.svg') }}" alt="سوم العقارية" class="h-12 w-auto object-contain" style="max-width: 150px; filter: brightness(1.2);">
                 </a>
                 <p class="text-gray-300 mb-4">مكتبك العقاري الموثوق لجميع احتياجاتك العقارية</p>
                 <div class="flex gap-4">
@@ -20,6 +20,7 @@
                 <ul class="space-y-2 text-gray-300">
                     <li><a href="{{ route('home') }}" class="hover:text-white transition-colors">الرئيسية</a></li>
                     <li><a href="{{ route('properties.index') }}" class="hover:text-white transition-colors">العقارات</a></li>
+                    <li><a href="{{ route('blog.index') }}" class="hover:text-white transition-colors">المدونة</a></li>
                     <li><a href="{{ route('about') }}" class="hover:text-white transition-colors">من نحن</a></li>
                     <li><a href="{{ route('contact') }}" class="hover:text-white transition-colors">اتصل بنا</a></li>
                 </ul>
@@ -34,7 +35,7 @@
                 </ul>
             </div>
             <div>
-                <h3 class="text-lg font-semibold mb-4">تواصل معنا</h3>
+                <h3 class="text-lg font-semibold mb-4">نستقبل طلباتكم هنا</h3>
                 <div class="space-y-3 text-gray-300">
                     <div class="flex items-center gap-3">
                         <i class="ri-phone-line"></i>

@@ -198,7 +198,7 @@ class HomeController extends Controller
                 : collect();
             
             $services = Schema::hasTable('services') 
-                ? Service::orderBy('order')->get() 
+                ? Service::orderBy('order')->get()->unique('title')->values() 
                 : collect();
             
             $featuredProperties = Schema::hasTable('properties') 

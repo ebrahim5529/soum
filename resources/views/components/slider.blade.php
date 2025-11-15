@@ -61,7 +61,7 @@
                             </div>
                         @endif
                         @if($slider->property_id)
-                            <a href="{{ route('properties.show', $slider->property_id) }}" class="bg-primary text-white px-8 py-3 !rounded-button whitespace-nowrap hover:bg-blue-700 transition-colors text-lg inline-block">
+                            <a href="{{ route('properties.show', $slider->property_id) }}" class="bg-primary text-white px-8 py-3 !rounded-button whitespace-nowrap hover:bg-orange-600 transition-colors text-lg inline-block">
                                 عرض التفاصيل
                             </a>
                         @endif
@@ -160,7 +160,7 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 @endpush
 @else
-<section class="hero-section h-[600px] relative bg-gradient-to-br from-blue-900 to-blue-700 flex items-center justify-center">
+<section class="hero-section h-[600px] relative bg-gradient-to-br from-gray-800 to-gray-700 flex items-center justify-center">
     <div class="container mx-auto px-4 text-center text-white">
         <h1 class="text-5xl font-bold mb-4">مرحباً بك في منصة عقار</h1>
         <p class="text-xl mb-8">منصة شاملة لإدارة وبيع العقارات</p>

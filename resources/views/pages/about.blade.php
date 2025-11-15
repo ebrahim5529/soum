@@ -1,6 +1,6 @@
 <x-main>
             <!-- Hero Banner -->
-    <section class="bg-gradient-to-r from-primary to-blue-700 text-white py-20 relative overflow-hidden">
+    <section class="bg-gradient-to-r from-primary to-orange-600 text-white py-20 relative overflow-hidden">
         <div class="absolute inset-0 opacity-10">
             <div class="absolute top-10 right-10 w-32 h-32 bg-white rounded-full"></div>
             <div class="absolute bottom-10 left-10 w-40 h-40 bg-white rounded-full"></div>
@@ -30,7 +30,7 @@
                     <span class="text-primary font-semibold">مكتب العقار</span>
                 </div>
                 <div class="flex justify-center mb-6">
-                    <div class="w-20 h-20 bg-gradient-to-br from-primary to-blue-600 rounded-full flex items-center justify-center shadow-lg">
+                    <div class="w-20 h-20 bg-gradient-to-br from-primary to-orange-600 rounded-full flex items-center justify-center shadow-lg">
                         <i class="ri-home-line text-4xl text-white"></i>
                     </div>
                 </div>
@@ -84,7 +84,7 @@
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
                     <div class="bg-white rounded-xl p-6 shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border border-gray-100">
-                        <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center mb-4">
+                        <div class="w-16 h-16 bg-gradient-to-br from-primary to-orange-600 rounded-xl flex items-center justify-center mb-4">
                             <i class="ri-shield-check-line text-3xl text-white"></i>
                         </div>
                         <h3 class="text-xl font-bold text-gray-800 mb-3">موثوقية عالية</h3>
@@ -129,7 +129,7 @@
             </div>
 
             <!-- Statistics -->
-            <div class="bg-gradient-to-r from-primary to-blue-700 rounded-2xl p-8 md:p-12 mb-20 text-white relative overflow-hidden">
+            <div class="bg-gradient-to-r from-primary to-orange-600 rounded-2xl p-8 md:p-12 mb-20 text-white relative overflow-hidden">
                 <div class="absolute inset-0 opacity-10">
                     <div class="absolute top-5 right-5 w-20 h-20 bg-white rounded-full"></div>
                     <div class="absolute bottom-5 left-5 w-24 h-24 bg-white rounded-full"></div>
@@ -215,9 +215,9 @@
                     </div>
                     
                     <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                        <a href="{{ route('contact') }}" class="bg-primary text-white px-8 py-3 !rounded-button hover:bg-blue-700 transition-all shadow-lg hover:shadow-xl inline-block font-semibold">
+                        <a href="{{ route('contact') }}" class="bg-primary text-white px-8 py-3 !rounded-button hover:bg-orange-600 transition-all shadow-lg hover:shadow-xl inline-block font-semibold">
                             <i class="ri-phone-line ml-2"></i>
-                            تواصل معنا
+                            نستقبل طلباتكم هنا
                         </a>
                         <a href="{{ route('properties.index') }}" class="bg-white border-2 border-primary text-primary px-8 py-3 !rounded-button hover:bg-primary hover:text-white transition-all shadow-lg hover:shadow-xl inline-block font-semibold">
                             <i class="ri-home-line ml-2"></i>

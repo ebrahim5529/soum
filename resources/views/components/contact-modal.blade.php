@@ -24,8 +24,8 @@
              class="bg-white rounded-2xl shadow-2xl w-full max-w-2xl mx-4 max-h-[90vh] overflow-y-auto">
             
             <!-- Modal Header -->
-            <div class="sticky top-0 bg-gradient-to-r from-primary to-blue-700 text-white p-6 rounded-t-2xl flex items-center justify-between z-10">
-                <h2 class="text-2xl font-bold">تواصل معنا</h2>
+            <div class="sticky top-0 bg-gradient-to-r from-primary to-orange-600 text-white p-6 rounded-t-2xl flex items-center justify-between z-10">
+                <h2 class="text-2xl font-bold">نستقبل طلباتكم هنا</h2>
                 <button @click="open = false" class="text-white hover:text-gray-200 transition-colors">
                     <i class="ri-close-line text-3xl"></i>
                 </button>
@@ -132,7 +132,7 @@
                         <button type="submit"
                                 :disabled="submitting"
                                 :class="submitting ? 'opacity-50 cursor-not-allowed' : ''"
-                                class="flex-1 bg-primary text-white px-8 py-3 !rounded-button hover:bg-blue-700 transition-all font-semibold shadow-lg hover:shadow-xl">
+                                class="flex-1 bg-primary text-white px-8 py-3 !rounded-button hover:bg-orange-600 transition-all font-semibold shadow-lg hover:shadow-xl">
                             <span x-show="!submitting">
                                 <i class="ri-send-plane-line ml-2"></i>
                                 إرسال

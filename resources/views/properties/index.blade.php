@@ -50,7 +50,7 @@
                         </div>
                     </div>
                     <div class="lg:col-span-4 flex justify-center">
-                        <button type="submit" class="bg-primary text-white px-12 py-3 !rounded-button whitespace-nowrap hover:bg-blue-700 transition-colors flex items-center gap-2">
+                        <button type="submit" class="bg-primary text-white px-12 py-3 !rounded-button whitespace-nowrap hover:bg-orange-600 transition-colors flex items-center gap-2">
                             <i class="ri-search-line"></i>
                             <span>البحث</span>
                         </button>

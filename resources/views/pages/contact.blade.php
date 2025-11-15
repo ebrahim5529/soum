@@ -1,11 +1,11 @@
 <x-main>
     <!-- Hero Banner -->
-    <section class="bg-gradient-to-r from-primary to-blue-700 text-white py-20">
+    <section class="bg-gradient-to-r from-primary to-orange-600 text-white py-20">
         <div class="container mx-auto px-4">
             <div class="text-center max-w-4xl mx-auto">
                 <h1 class="text-5xl md:text-6xl font-bold mb-6">اتصل بنا</h1>
                 <p class="text-xl md:text-2xl opacity-90 leading-relaxed">
-                    نحن هنا لمساعدتك! تواصل معنا لأي استفسار أو طلب خدمة
+                    نحن هنا لمساعدتك! نستقبل طلباتكم هنا لأي استفسار أو طلب خدمة
                 </p>
             </div>
         </div>
@@ -105,7 +105,7 @@
                         </div>
                         
                         <button type="submit"
-                            class="w-full bg-primary text-white px-8 py-4 !rounded-button hover:bg-blue-700 transition-all text-lg font-semibold shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">
+                            class="w-full bg-primary text-white px-8 py-4 !rounded-button hover:bg-orange-600 transition-all text-lg font-semibold shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">
                             <i class="ri-send-plane-line ml-2"></i>
                             إرسال الرسالة
                         </button>
@@ -120,13 +120,13 @@
                                 <span class="text-primary font-semibold">معلوماتنا</span>
                             </div>
                             <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-2">معلومات الاتصال</h2>
-                            <p class="text-gray-600">تواصل معنا عبر أي من القنوات التالية</p>
+                            <p class="text-gray-600">نستقبل طلباتكم هنا عبر أي من القنوات التالية</p>
                             <div class="w-24 h-1 bg-primary mt-4"></div>
                         </div>
                         
                         <div class="space-y-6">
                             <div class="flex items-start gap-4 p-4 rounded-xl hover:bg-gray-50 transition-colors">
-                                <div class="w-14 h-14 bg-gradient-to-br from-primary to-blue-600 rounded-xl flex items-center justify-center flex-shrink-0 shadow-md">
+                                <div class="w-14 h-14 bg-gradient-to-br from-primary to-orange-600 rounded-xl flex items-center justify-center flex-shrink-0 shadow-md">
                                     <i class="ri-map-pin-line text-white text-2xl"></i>
                                 </div>
                                 <div>
@@ -174,9 +174,9 @@
                     </div>
 
                     <!-- Social Media -->
-                    <div class="bg-gradient-to-br from-primary to-blue-700 rounded-2xl shadow-xl p-6 md:p-10 text-white">
+                    <div class="bg-gradient-to-br from-primary to-orange-600 rounded-2xl shadow-xl p-6 md:p-10 text-white">
                         <h2 class="text-2xl md:text-3xl font-bold mb-6">تابعنا على</h2>
-                        <p class="text-white/90 mb-6">تواصل معنا عبر وسائل التواصل الاجتماعي</p>
+                        <p class="text-white/90 mb-6">نستقبل طلباتكم هنا عبر وسائل التواصل الاجتماعي</p>
                         <div class="flex flex-wrap gap-4">
                             <a href="https://snapchat.com/t/P7CPqsOo" target="_blank" rel="noopener noreferrer" class="w-14 h-14 bg-white/20 backdrop-blur-sm rounded-xl flex items-center justify-center text-white hover:bg-white hover:text-yellow-500 transition-all transform hover:scale-110 shadow-lg" title="Snapchat">
                                 <i class="ri-snapchat-fill text-2xl"></i>

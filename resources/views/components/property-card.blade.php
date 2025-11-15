@@ -73,7 +73,7 @@
                     /شهر
                 @endif
             </div>
-            <a href="{{ $detailsUrl }}" class="bg-primary text-white px-4 py-2 !rounded-button whitespace-nowrap hover:bg-blue-700 transition-colors text-sm">
+            <a href="{{ $detailsUrl }}" class="bg-primary text-white px-4 py-2 !rounded-button whitespace-nowrap hover:bg-orange-600 transition-colors text-sm">
                 عرض التفاصيل
             </a>
         </div>

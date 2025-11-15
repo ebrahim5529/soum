@@ -53,7 +53,7 @@
                         </div>
                     </div>
                     <div class="lg:col-span-4 flex justify-center">
-                        <button type="submit" class="bg-primary text-white px-12 py-3 !rounded-button whitespace-nowrap hover:bg-blue-700 transition-colors flex items-center gap-2">
+                        <button type="submit" class="bg-primary text-white px-12 py-3 !rounded-button whitespace-nowrap hover:bg-orange-600 transition-colors flex items-center gap-2">
                             <i class="ri-search-line"></i>
                             <span>البحث</span>
                         </button>
@@ -130,8 +130,8 @@
                         إضافة عقار للبيع
                     </a>
                 @else
-                    <a href="{{ route('register') }}" class="bg-white text-primary px-8 py-3 !rounded-button whitespace-nowrap hover:bg-gray-100 transition-colors font-semibold">
-                        إضافة عقار للبيع
+                    <a href="{{ route('login') }}" class="bg-white text-primary px-8 py-3 !rounded-button whitespace-nowrap hover:bg-gray-100 transition-colors font-semibold">
+                        تسجيل الدخول
                     </a>
                 @endauth
                 <a href="{{ route('contact') }}" class="bg-transparent border-2 border-white text-white px-8 py-3 !rounded-button whitespace-nowrap hover:bg-white hover:text-primary transition-colors font-semibold">

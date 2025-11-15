@@ -11,10 +11,19 @@ class DatabaseSeeder extends Seeder
     {
         // إنشاء مستخدم مسؤول (مع تجنب التكرار)
         User::updateOrCreate(
-            ['email' => 'admin@example.com'],
+            ['email' => 'admin@aqar.com'],
             [
-                'name' => 'Admin',
-                'password' => bcrypt('password'),
+                'name' => 'مدير النظام',
+                'password' => bcrypt('admin123'),
+            ]
+        );
+
+        // إنشاء مستخدم عادي للاختبار
+        User::updateOrCreate(
+            ['email' => 'user@aqar.com'],
+            [
+                'name' => 'مستخدم تجريبي',
+                'password' => bcrypt('user123'),
             ]
         );
 
@@ -26,6 +35,7 @@ class DatabaseSeeder extends Seeder
             ServiceSeeder::class,
             PropertySeeder::class,
             SliderSeeder::class,
+            BlogPostSeeder::class,
         ]);
     }
 }

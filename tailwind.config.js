@@ -12,8 +12,8 @@ export default {
     theme: {
         extend: {
             colors: {
-                primary: '#f15e22',
-                secondary: '#0e4657',
+                primary: '#f97316', // برتقالي
+                secondary: '#374151', // رصاصي غامق
             },
             borderRadius: {
                 'none': '0px',
