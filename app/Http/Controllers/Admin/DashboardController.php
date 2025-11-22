@@ -16,16 +16,69 @@ class DashboardController extends Controller
     public function index()
     {
         try {
-            $totalProperties = Schema::hasTable('properties') ? Property::count() : 0;
-            $availableProperties = Schema::hasTable('properties') ? Property::where('status', 'available')->count() : 0;
-            $featuredProperties = Schema::hasTable('properties') ? Property::where('is_featured', true)->count() : 0;
-            $totalSliders = Schema::hasTable('sliders') ? Slider::count() : 0;
-            $activeSliders = Schema::hasTable('sliders') ? Slider::where('is_active', true)->count() : 0;
-            $totalServices = Schema::hasTable('services') ? Service::count() : 0;
-            $totalBlogPosts = Schema::hasTable('blog_posts') ? BlogPost::count() : 0;
-            $publishedBlogPosts = Schema::hasTable('blog_posts') ? BlogPost::where('is_published', true)->count() : 0;
-            $totalContacts = Schema::hasTable('contacts') ? Contact::count() : 0;
-            $unreadContacts = Schema::hasTable('contacts') ? Contact::where('is_read', false)->count() : 0;
+            // تحسين الاستعلامات: استخدام aggregate queries بدلاً من استعلامات متعددة
+            $stats = [];
+            
+            if (Schema::hasTable('properties')) {
+                $propertyStats = Property::selectRaw('
+                    COUNT(*) as total,
+                    SUM(CASE WHEN status = "available" THEN 1 ELSE 0 END) as available,
+                    SUM(CASE WHEN is_featured = 1 THEN 1 ELSE 0 END) as featured
+                ')->first();
+                
+                $totalProperties = $propertyStats->total ?? 0;
+                $availableProperties = $propertyStats->available ?? 0;
+                $featuredProperties = $propertyStats->featured ?? 0;
+            } else {
+                $totalProperties = 0;
+                $availableProperties = 0;
+                $featuredProperties = 0;
+            }
+
+            if (Schema::hasTable('sliders')) {
+                $sliderStats = Slider::selectRaw('
+                    COUNT(*) as total,
+                    SUM(CASE WHEN is_active = 1 THEN 1 ELSE 0 END) as active
+                ')->first();
+                
+                $totalSliders = $sliderStats->total ?? 0;
+                $activeSliders = $sliderStats->active ?? 0;
+            } else {
+                $totalSliders = 0;
+                $activeSliders = 0;
+            }
+
+            if (Schema::hasTable('services')) {
+                $totalServices = Service::count();
+            } else {
+                $totalServices = 0;
+            }
+
+            if (Schema::hasTable('blog_posts')) {
+                $blogStats = BlogPost::selectRaw('
+                    COUNT(*) as total,
+                    SUM(CASE WHEN is_published = 1 THEN 1 ELSE 0 END) as published
+                ')->first();
+                
+                $totalBlogPosts = $blogStats->total ?? 0;
+                $publishedBlogPosts = $blogStats->published ?? 0;
+            } else {
+                $totalBlogPosts = 0;
+                $publishedBlogPosts = 0;
+            }
+
+            if (Schema::hasTable('contacts')) {
+                $contactStats = Contact::selectRaw('
+                    COUNT(*) as total,
+                    SUM(CASE WHEN is_read = 0 THEN 1 ELSE 0 END) as unread
+                ')->first();
+                
+                $totalContacts = $contactStats->total ?? 0;
+                $unreadContacts = $contactStats->unread ?? 0;
+            } else {
+                $totalContacts = 0;
+                $unreadContacts = 0;
+            }
 
             $recentProperties = Schema::hasTable('properties') 
                 ? Property::with(['propertyType', 'serviceType', 'city'])

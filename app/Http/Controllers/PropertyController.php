@@ -8,6 +8,7 @@ use App\Models\PropertyType;
 use App\Models\ServiceType;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Schema;
 
 class PropertyController extends Controller
@@ -49,9 +50,21 @@ class PropertyController extends Controller
 
                 $properties = $query->latest()->paginate(12);
 
-                $propertyTypes = Schema::hasTable('property_types') ? PropertyType::orderBy('name')->distinct()->get() : collect();
-                $serviceTypes = Schema::hasTable('service_types') ? ServiceType::orderBy('name')->distinct()->get() : collect();
-                $cities = Schema::hasTable('cities') ? City::orderBy('name')->distinct()->get() : collect();
+                $propertyTypes = Schema::hasTable('property_types') 
+                    ? Cache::remember('property_types_list', 7200, function () {
+                        return PropertyType::orderBy('name')->get();
+                    })
+                    : collect();
+                $serviceTypes = Schema::hasTable('service_types') 
+                    ? Cache::remember('service_types_list', 7200, function () {
+                        return ServiceType::orderBy('name')->get();
+                    })
+                    : collect();
+                $cities = Schema::hasTable('cities') 
+                    ? Cache::remember('cities_list', 7200, function () {
+                        return City::orderBy('name')->get();
+                    })
+                    : collect();
             }
         } catch (\Exception $e) {
             $properties = new LengthAwarePaginator([], 0, 12, 1, ['path' => $request->url(), 'query' => $request->query()]);

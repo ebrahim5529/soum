@@ -17,7 +17,7 @@
 
 <div class="property-card bg-white rounded-2xl overflow-hidden shadow-lg">
     <div class="relative">
-        <img src="{{ $property->main_image }}" alt="{{ $property->title }}" class="w-full h-64 object-cover object-top">
+        <img src="{{ $property->main_image }}" alt="{{ $property->title }}" class="w-full h-64 object-cover object-top" loading="lazy">
         <div class="absolute top-4 right-4 flex gap-2">
             @if($property->featured_status)
                 @php

@@ -9,6 +9,7 @@ use App\Models\Service;
 use App\Models\ServiceType;
 use App\Models\Slider;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Schema;
 
 class HomeController extends Controller
@@ -182,30 +183,42 @@ class HomeController extends Controller
 
         try {
             $sliders = Schema::hasTable('sliders') 
-                ? Slider::where('is_active', true)->orderBy('order')->get() 
+                ? Cache::remember('home_sliders', 3600, function () {
+                    return Slider::where('is_active', true)->orderBy('order')->get();
+                })
                 : collect();
             
             $propertyTypes = Schema::hasTable('property_types') 
-                ? PropertyType::orderBy('name')->distinct()->get() 
+                ? Cache::remember('property_types', 7200, function () {
+                    return PropertyType::orderBy('name')->get();
+                })
                 : collect();
             
             $serviceTypes = Schema::hasTable('service_types') 
-                ? ServiceType::orderBy('name')->distinct()->get() 
+                ? Cache::remember('service_types', 7200, function () {
+                    return ServiceType::orderBy('name')->get();
+                })
                 : collect();
             
             $cities = Schema::hasTable('cities') 
-                ? City::orderBy('name')->distinct()->get() 
+                ? Cache::remember('cities', 7200, function () {
+                    return City::orderBy('name')->get();
+                })
                 : collect();
             
             $services = Schema::hasTable('services') 
-                ? Service::orderBy('order')->get()->unique('title')->values() 
+                ? Cache::remember('services', 3600, function () {
+                    return Service::orderBy('order')->get()->unique('title')->values();
+                })
                 : collect();
             
             $featuredProperties = Schema::hasTable('properties') 
-                ? Property::where('is_featured', true)
-                    ->with(['propertyType', 'serviceType', 'city'])
-                    ->take(6)
-                    ->get()
+                ? Cache::remember('featured_properties', 1800, function () {
+                    return Property::where('is_featured', true)
+                        ->with(['propertyType', 'serviceType', 'city'])
+                        ->take(6)
+                        ->get();
+                })
                 : collect();
         } catch (\Exception $e) {
             // في حالة وجود أي خطأ، نستخدم قيم افتراضية فارغة
