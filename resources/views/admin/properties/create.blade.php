@@ -133,6 +133,14 @@
             </div>
 
             <div class="mb-6">
+                <label class="block text-gray-700 font-semibold mb-2">موقع Google Maps</label>
+                <textarea name="google_map_url" rows="3" placeholder="أدخل رابط Google Maps أو كود embed"
+                    class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:border-primary focus:outline-none">{{ old('google_map_url') }}</textarea>
+                <p class="text-gray-500 text-sm mt-1">يمكنك إدخال رابط Google Maps أو كود embed</p>
+                @error('google_map_url') <p class="text-red-500 text-sm mt-1">{{ $message }}</p> @enderror
+            </div>
+
+            <div class="mb-6">
                 <label class="block text-gray-700 font-semibold mb-2">الصورة الرئيسية *</label>
                 <input type="file" name="main_image" accept="image/*" required
                     class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:border-primary focus:outline-none">

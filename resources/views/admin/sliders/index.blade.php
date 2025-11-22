@@ -27,7 +27,15 @@
                     @forelse($sliders as $slider)
                         <tr class="border-b border-gray-100 hover:bg-gray-50">
                             <td class="py-4 px-6">
-                                <img src="{{ $slider->background_image ? asset('storage/' . $slider->background_image) : asset('images/placeholder.jpg') }}" 
+                                @php
+                                    $imageUrl = $slider->background_image;
+                                    if ($imageUrl && !str_starts_with($imageUrl, 'http') && !str_starts_with($imageUrl, '/')) {
+                                        $imageUrl = asset('storage/' . $imageUrl);
+                                    } elseif (!$imageUrl) {
+                                        $imageUrl = asset('images/placeholder.jpg');
+                                    }
+                                @endphp
+                                <img src="{{ $imageUrl }}" 
                                      alt="{{ $slider->title }}" 
                                      class="w-24 h-16 object-cover rounded-lg">
                             </td>

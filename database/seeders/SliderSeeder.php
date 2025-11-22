@@ -18,7 +18,7 @@ class SliderSeeder extends Seeder
                 'price_label' => null,
                 'property_type' => 'فيلا - دورين',
                 'service_type' => 'للبيع',
-                'location' => 'الرياض - حي النرجس',
+                'location' => 'القصيم - عنيزة - حي الفاخرية',
                 'area' => '450 متر مربع',
                 'badge' => 'جديد',
                 'badge_color' => 'red',
@@ -35,7 +35,7 @@ class SliderSeeder extends Seeder
                 'price_label' => 'شهرياً',
                 'property_type' => 'شقة - الطابق الخامس',
                 'service_type' => 'للإيجار',
-                'location' => 'جدة - حي الزهراء',
+                'location' => 'القصيم - عنيزة',
                 'area' => '180 متر مربع',
                 'badge' => 'مميز',
                 'badge_color' => 'green',
@@ -52,7 +52,7 @@ class SliderSeeder extends Seeder
                 'price_label' => null,
                 'property_type' => 'أرض - تجارية',
                 'service_type' => 'للاستثمار',
-                'location' => 'الدمام - حي الشاطئ',
+                'location' => 'القصيم - عنيزة - طريق عمربن الخطاب',
                 'area' => '2000 متر مربع',
                 'badge' => 'استثمار',
                 'badge_color' => 'blue',
@@ -64,7 +64,10 @@ class SliderSeeder extends Seeder
         ];
 
         foreach ($sliders as $slider) {
-            Slider::create($slider);
+            Slider::firstOrCreate(
+                ['title' => $slider['title']],
+                $slider
+            );
         }
     }
 }

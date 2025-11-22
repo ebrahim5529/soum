@@ -93,6 +93,18 @@
                         <i class="ri-mail-line"></i>
                         <span>التواصل</span>
                     </a>
+                    <a href="{{ route('admin.about.index') }}" @click="!isDesktop && (sidebarOpen = false)" class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-gray-700 transition-colors {{ request()->routeIs('admin.about.*') ? 'bg-primary' : '' }}">
+                        <i class="ri-information-line"></i>
+                        <span>من نحن</span>
+                    </a>
+                    <a href="{{ route('admin.why-choose-us.index') }}" @click="!isDesktop && (sidebarOpen = false)" class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-gray-700 transition-colors {{ request()->routeIs('admin.why-choose-us.*') ? 'bg-primary' : '' }}">
+                        <i class="ri-questionnaire-line"></i>
+                        <span>لماذا نحن؟</span>
+                    </a>
+                    <a href="{{ route('admin.statistics.index') }}" @click="!isDesktop && (sidebarOpen = false)" class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-gray-700 transition-colors {{ request()->routeIs('admin.statistics.*') ? 'bg-primary' : '' }}">
+                        <i class="ri-bar-chart-line"></i>
+                        <span>إنجازاتنا بالأرقام</span>
+                    </a>
                     <div class="border-t border-gray-700 my-4"></div>
                     <a href="{{ route('home') }}" @click="!isDesktop && (sidebarOpen = false)" class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-gray-700 transition-colors">
                         <i class="ri-global-line"></i>

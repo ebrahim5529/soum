@@ -35,7 +35,7 @@
                     </div>
                 </div>
                 <p class="text-xl text-gray-600 leading-relaxed mb-6">
-                    نحن فريق من الخبراء المتخصصين في مجال العقارات، نعمل منذ أكثر من 10 سنوات على تقديم أفضل الخدمات العقارية لعملائنا الكرام. نسعى جاهدين لتوفير حلول متميزة تلبي جميع احتياجاتك العقارية.
+                    {{ $aboutPage->introduction ?: 'نحن فريق من الخبراء المتخصصين في مجال العقارات، نعمل منذ أكثر من 10 سنوات على تقديم أفضل الخدمات العقارية لعملائنا الكرام. نسعى جاهدين لتوفير حلول متميزة تلبي جميع احتياجاتك العقارية.' }}
                 </p>
                 <div class="w-24 h-1 bg-primary mx-auto"></div>
             </div>
@@ -47,14 +47,20 @@
                         <div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center flex-shrink-0">
                             <i class="ri-eye-line text-3xl text-white"></i>
                         </div>
-                        <h2 class="text-3xl md:text-4xl font-bold text-gray-800">رؤيتنا</h2>
+                        <h2 class="text-3xl md:text-4xl font-bold text-gray-800">{{ $aboutPage->vision_title ?: 'رؤيتنا' }}</h2>
                     </div>
+                    @if($aboutPage->vision_content)
+                        <div class="text-gray-700 text-lg leading-relaxed whitespace-pre-line">
+                            {{ $aboutPage->vision_content }}
+                        </div>
+                    @else
                     <p class="text-gray-700 text-lg leading-relaxed mb-4">
                         نسعى لأن نكون الخيار الأول والأمثل للعملاء في مجال العقارات على مستوى المملكة العربية السعودية، من خلال تقديم خدمات متميزة واحترافية تلبي جميع احتياجاتهم العقارية.
                     </p>
                     <p class="text-gray-700 text-lg leading-relaxed">
                         نؤمن بأن كل عميل يستحق أفضل الخدمات وأن كل عقار له قيمته الفريدة، لذلك نعمل بجد وإخلاص لتقديم حلول مخصصة وذات جودة عالية لكل عميل.
                     </p>
+                    @endif
                 </div>
                 
                 <div class="bg-gradient-to-br from-green-50 to-green-100 rounded-2xl p-8 md:p-10 shadow-lg">
@@ -62,14 +68,20 @@
                         <div class="w-16 h-16 bg-green-600 rounded-full flex items-center justify-center flex-shrink-0">
                             <i class="ri-target-line text-3xl text-white"></i>
                         </div>
-                        <h2 class="text-3xl md:text-4xl font-bold text-gray-800">رسالتنا</h2>
+                        <h2 class="text-3xl md:text-4xl font-bold text-gray-800">{{ $aboutPage->mission_title ?: 'رسالتنا' }}</h2>
                     </div>
+                    @if($aboutPage->mission_content)
+                        <div class="text-gray-700 text-lg leading-relaxed whitespace-pre-line">
+                            {{ $aboutPage->mission_content }}
+                        </div>
+                    @else
                     <p class="text-gray-700 text-lg leading-relaxed mb-4">
                         رسالتنا هي توفير خدمات عقارية شاملة ومهنية تساعد عملاءنا على تحقيق أهدافهم العقارية بكفاءة وشفافية تامة، مع ضمان أعلى مستويات الرضا والثقة.
                     </p>
                     <p class="text-gray-700 text-lg leading-relaxed">
                         نلتزم بأعلى معايير الجودة والأمانة في جميع معاملاتنا، ونقدم استشارات متخصصة مدروسة لمساعدة عملاءنا في اتخاذ القرارات الصحيحة والاستثمارات المربحة.
                     </p>
+                    @endif
                 </div>
             </div>
 
@@ -83,48 +95,32 @@
                     <div class="w-24 h-1 bg-primary mx-auto mt-4"></div>
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+                    @forelse($whyChooseUsItems as $item)
+                        @php
+                            $iconBgClasses = [
+                                'primary' => 'from-primary to-orange-600',
+                                'blue' => 'from-blue-500 to-blue-600',
+                                'green' => 'from-green-500 to-green-600',
+                                'purple' => 'from-purple-500 to-purple-600',
+                                'orange' => 'from-orange-500 to-orange-600',
+                                'teal' => 'from-teal-500 to-teal-600',
+                                'red' => 'from-red-500 to-red-600',
+                            ];
+                            $bgColor = $iconBgClasses[$item->icon_color] ?? 'from-primary to-orange-600';
+                        @endphp
                     <div class="bg-white rounded-xl p-6 shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border border-gray-100">
-                        <div class="w-16 h-16 bg-gradient-to-br from-primary to-orange-600 rounded-xl flex items-center justify-center mb-4">
-                            <i class="ri-shield-check-line text-3xl text-white"></i>
+                            <div class="w-16 h-16 bg-gradient-to-br {{ $bgColor }} rounded-xl flex items-center justify-center mb-4">
+                                <i class="{{ $item->icon }} text-3xl text-white"></i>
                         </div>
-                        <h3 class="text-xl font-bold text-gray-800 mb-3">موثوقية عالية</h3>
-                        <p class="text-gray-600 leading-relaxed">أكثر من 10 سنوات من الخبرة والثقة المتراكمة في السوق العقاري السعودي</p>
-                    </div>
-                    <div class="bg-white rounded-xl p-6 shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border border-gray-100">
-                        <div class="w-16 h-16 bg-gradient-to-br from-green-500 to-green-600 rounded-xl flex items-center justify-center mb-4">
-                            <i class="ri-team-line text-3xl text-white"></i>
+                            <h3 class="text-xl font-bold text-gray-800 mb-3">{{ $item->title }}</h3>
+                            <p class="text-gray-600 leading-relaxed">{{ $item->description }}</p>
                         </div>
-                        <h3 class="text-xl font-bold text-gray-800 mb-3">فريق متخصص</h3>
-                        <p class="text-gray-600 leading-relaxed">فريق من الخبراء المتخصصين في جميع جوانب العقارات والاستثمار العقاري</p>
-                    </div>
-                    <div class="bg-white rounded-xl p-6 shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border border-gray-100">
-                        <div class="w-16 h-16 bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl flex items-center justify-center mb-4">
-                            <i class="ri-customer-service-2-line text-3xl text-white"></i>
+                    @empty
+                        <div class="col-span-3 text-center text-gray-500 py-8">
+                            <i class="ri-inbox-line text-4xl mb-4 block"></i>
+                            لا توجد عناصر متاحة
                         </div>
-                        <h3 class="text-xl font-bold text-gray-800 mb-3">خدمة عملاء متميزة</h3>
-                        <p class="text-gray-600 leading-relaxed">نقدم دعمًا مستمرًا ومتابعة دقيقة لجميع عملائنا في جميع مراحل المعاملة</p>
-                    </div>
-                    <div class="bg-white rounded-xl p-6 shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border border-gray-100">
-                        <div class="w-16 h-16 bg-gradient-to-br from-orange-500 to-orange-600 rounded-xl flex items-center justify-center mb-4">
-                            <i class="ri-price-tag-3-line text-3xl text-white"></i>
-                        </div>
-                        <h3 class="text-xl font-bold text-gray-800 mb-3">أسعار تنافسية</h3>
-                        <p class="text-gray-600 leading-relaxed">أفضل الأسعار والعروض المميزة في السوق مع ضمان القيمة الحقيقية</p>
-                    </div>
-                    <div class="bg-white rounded-xl p-6 shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border border-gray-100">
-                        <div class="w-16 h-16 bg-gradient-to-br from-teal-500 to-teal-600 rounded-xl flex items-center justify-center mb-4">
-                            <i class="ri-time-line text-3xl text-white"></i>
-                        </div>
-                        <h3 class="text-xl font-bold text-gray-800 mb-3">سرعة في التنفيذ</h3>
-                        <p class="text-gray-600 leading-relaxed">ننهي جميع المعاملات والإجراءات القانونية في أقصر وقت ممكن</p>
-                    </div>
-                    <div class="bg-white rounded-xl p-6 shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border border-gray-100">
-                        <div class="w-16 h-16 bg-gradient-to-br from-red-500 to-red-600 rounded-xl flex items-center justify-center mb-4">
-                            <i class="ri-award-line text-3xl text-white"></i>
-                        </div>
-                        <h3 class="text-xl font-bold text-gray-800 mb-3">جودة عالية</h3>
-                        <p class="text-gray-600 leading-relaxed">نقدم خدمات بجودة عالية ومهنية مع ضمان رضا العملاء التام</p>
-                    </div>
+                    @endforelse
                 </div>
             </div>
 
@@ -144,34 +140,20 @@
                     <p class="text-xl opacity-90">نفتخر بما حققناه مع عملائنا</p>
                 </div>
                 <div class="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
+                    @forelse($statistics as $statistic)
                     <div class="text-center bg-white/10 rounded-xl p-6 backdrop-blur-sm hover:bg-white/20 transition-all">
                         <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                            <i class="ri-home-line text-3xl text-white"></i>
+                                <i class="{{ $statistic->icon }} text-3xl text-white"></i>
                         </div>
-                        <div class="text-4xl md:text-5xl font-bold mb-2">+1000</div>
-                        <div class="text-lg opacity-90">عقار متاح</div>
-                    </div>
-                    <div class="text-center bg-white/10 rounded-xl p-6 backdrop-blur-sm hover:bg-white/20 transition-all">
-                        <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                            <i class="ri-user-smile-line text-3xl text-white"></i>
+                            <div class="text-4xl md:text-5xl font-bold mb-2">{{ $statistic->number }}</div>
+                            <div class="text-lg opacity-90">{{ $statistic->label }}</div>
                         </div>
-                        <div class="text-4xl md:text-5xl font-bold mb-2">+500</div>
-                        <div class="text-lg opacity-90">عميل راضٍ</div>
-                    </div>
-                    <div class="text-center bg-white/10 rounded-xl p-6 backdrop-blur-sm hover:bg-white/20 transition-all">
-                        <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                            <i class="ri-calendar-check-line text-3xl text-white"></i>
+                    @empty
+                        <div class="col-span-4 text-center text-white/80 py-8">
+                            <i class="ri-inbox-line text-4xl mb-4 block"></i>
+                            لا توجد إنجازات متاحة
                         </div>
-                        <div class="text-4xl md:text-5xl font-bold mb-2">+10</div>
-                        <div class="text-lg opacity-90">سنوات خبرة</div>
-                    </div>
-                    <div class="text-center bg-white/10 rounded-xl p-6 backdrop-blur-sm hover:bg-white/20 transition-all">
-                        <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                            <i class="ri-team-line text-3xl text-white"></i>
-                        </div>
-                        <div class="text-4xl md:text-5xl font-bold mb-2">+50</div>
-                        <div class="text-lg opacity-90">عامل متخصص</div>
-                    </div>
+                    @endforelse
                 </div>
             </div>
 
@@ -186,7 +168,7 @@
                     <h2 class="text-4xl md:text-5xl font-bold text-gray-800 mb-6">فريقنا المتخصص</h2>
                     <div class="w-24 h-1 bg-primary mx-auto mb-6"></div>
                     <p class="text-xl text-gray-600 leading-relaxed mb-8">
-                        فريقنا يتكون من مجموعة من الخبراء والمتخصصين المحترفين في مختلف مجالات العقارات والاستثمار العقاري. نحن مستعدون دومًا لمساعدتك في تحقيق أهدافك العقارية والاستثمارية بأفضل الطرق الممكنة.
+                        {{ $aboutPage->team_description ?: 'فريقنا يتكون من مجموعة من الخبراء والمتخصصين المحترفين في مختلف مجالات العقارات والاستثمار العقاري. نحن مستعدون دومًا لمساعدتك في تحقيق أهدافك العقارية والاستثمارية بأفضل الطرق الممكنة.' }}
                     </p>
                     
                     <!-- Team Features -->

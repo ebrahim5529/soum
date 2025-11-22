@@ -10,6 +10,8 @@ class CitySeeder extends Seeder
     public function run(): void
     {
         $cities = [
+            ['name' => 'القصيم', 'name_en' => 'Al Qassim'],
+            ['name' => 'عنيزة', 'name_en' => 'Unaizah'],
             ['name' => 'الرياض', 'name_en' => 'Riyadh'],
             ['name' => 'جدة', 'name_en' => 'Jeddah'],
             ['name' => 'الدمام', 'name_en' => 'Dammam'],

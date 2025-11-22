@@ -22,8 +22,8 @@ class PropertySeeder extends Seeder
                 'floor_number' => null,
                 'property_type_id' => 1, // فيلا
                 'service_type_id' => 1, // للبيع
-                'city_id' => 1, // الرياض
-                'district' => 'حي العليا',
+                'city_id' => 2, // عنيزة
+                'district' => 'حي الفاخرية',
                 'status' => 'available',
                 'featured_status' => 'جديد',
                 'likes_count' => 156,
@@ -41,8 +41,8 @@ class PropertySeeder extends Seeder
                 'floor_number' => 'الطابق الثالث',
                 'property_type_id' => 2, // شقة
                 'service_type_id' => 2, // للإيجار
-                'city_id' => 2, // جدة
-                'district' => 'حي الروضة',
+                'city_id' => 2, // عنيزة
+                'district' => 'طريق عمربن الخطاب',
                 'status' => 'available',
                 'featured_status' => null,
                 'likes_count' => 89,
@@ -60,8 +60,8 @@ class PropertySeeder extends Seeder
                 'floor_number' => null,
                 'property_type_id' => 3, // أرض
                 'service_type_id' => 3, // للاستثمار
-                'city_id' => 3, // الدمام
-                'district' => 'الكورنيش',
+                'city_id' => 2, // عنيزة
+                'district' => 'حي الفاخرية',
                 'status' => 'available',
                 'featured_status' => 'استثمار',
                 'likes_count' => 234,
@@ -70,15 +70,52 @@ class PropertySeeder extends Seeder
             ],
         ];
 
+        // التأكد من وجود المدن وأنواع العقارات وأنواع الخدمات
+        $city = \App\Models\City::where('name', 'عنيزة')->first();
+        if (!$city) {
+            $city = \App\Models\City::create(['name' => 'عنيزة', 'name_en' => 'Unaizah']);
+        }
+        
+        $propertyTypeVilla = \App\Models\PropertyType::where('name', 'فيلا')->first();
+        $propertyTypeApartment = \App\Models\PropertyType::where('name', 'شقة')->first();
+        $propertyTypeLand = \App\Models\PropertyType::where('name', 'أرض')->first();
+        
+        $serviceTypeSale = \App\Models\ServiceType::where('name', 'للبيع')->first();
+        $serviceTypeRent = \App\Models\ServiceType::where('name', 'للإيجار')->first();
+        $serviceTypeInvestment = \App\Models\ServiceType::where('name', 'للاستثمار')->first();
+        
+        // تحديث معرفات المدينة وأنواع العقارات والخدمات
+        $properties[0]['city_id'] = $city->id;
+        $properties[0]['property_type_id'] = $propertyTypeVilla ? $propertyTypeVilla->id : 1;
+        $properties[0]['service_type_id'] = $serviceTypeSale ? $serviceTypeSale->id : 1;
+        
+        $properties[1]['city_id'] = $city->id;
+        $properties[1]['property_type_id'] = $propertyTypeApartment ? $propertyTypeApartment->id : 2;
+        $properties[1]['service_type_id'] = $serviceTypeRent ? $serviceTypeRent->id : 2;
+        
+        $properties[2]['city_id'] = $city->id;
+        $properties[2]['property_type_id'] = $propertyTypeLand ? $propertyTypeLand->id : 3;
+        $properties[2]['service_type_id'] = $serviceTypeInvestment ? $serviceTypeInvestment->id : 3;
+        
         foreach ($properties as $property) {
-            $prop = Property::create($property);
+            $prop = Property::firstOrCreate(
+                ['title' => $property['title']],
+                $property
+            );
             
-            // إضافة صورة رئيسية كصورة إضافية أيضاً
-            PropertyImage::create([
-                'property_id' => $prop->id,
-                'image_path' => $property['main_image'],
-                'order' => 0,
-            ]);
+            // تحديث البيانات إذا كانت موجودة
+            if ($prop->wasRecentlyCreated === false) {
+                $prop->update($property);
+            }
+            
+            // إضافة صورة رئيسية كصورة إضافية أيضاً إذا لم تكن موجودة
+            if (!\App\Models\PropertyImage::where('property_id', $prop->id)->where('image_path', $property['main_image'])->exists()) {
+                PropertyImage::create([
+                    'property_id' => $prop->id,
+                    'image_path' => $property['main_image'],
+                    'order' => 0,
+                ]);
+            }
         }
     }
 }

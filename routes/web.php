@@ -25,6 +25,19 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(
     Route::resource('contacts', App\Http\Controllers\Admin\ContactController::class)->except(['create', 'store', 'edit', 'update']);
     Route::post('contacts/{contact}/mark-read', [App\Http\Controllers\Admin\ContactController::class, 'markAsRead'])->name('contacts.mark-read');
     Route::post('contacts/{contact}/mark-unread', [App\Http\Controllers\Admin\ContactController::class, 'markAsUnread'])->name('contacts.mark-unread');
+    
+    // About Page Management
+    Route::get('about', [App\Http\Controllers\Admin\AboutPageController::class, 'index'])->name('about.index');
+    Route::get('about/edit', [App\Http\Controllers\Admin\AboutPageController::class, 'edit'])->name('about.edit');
+    Route::put('about', [App\Http\Controllers\Admin\AboutPageController::class, 'update'])->name('about.update');
+    
+    // Statistics Management
+    Route::get('statistics', [App\Http\Controllers\Admin\StatisticController::class, 'index'])->name('statistics.index');
+    Route::get('statistics/{statistic}/edit', [App\Http\Controllers\Admin\StatisticController::class, 'edit'])->name('statistics.edit');
+    Route::put('statistics/{statistic}', [App\Http\Controllers\Admin\StatisticController::class, 'update'])->name('statistics.update');
+    
+    // Why Choose Us Management
+    Route::resource('why-choose-us', App\Http\Controllers\Admin\WhyChooseUsItemController::class);
 });
 
 // Keep the old dashboard route for compatibility

@@ -2,14 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AboutPage;
 use App\Models\Contact;
+use App\Models\Statistic;
+use App\Models\WhyChooseUsItem;
 use Illuminate\Http\Request;
 
 class PageController extends Controller
 {
     public function about()
     {
-        return view('pages.about');
+        $aboutPage = AboutPage::firstOrCreate([]);
+        $whyChooseUsItems = WhyChooseUsItem::orderBy('order')->get();
+        $statistics = Statistic::orderBy('order')->get();
+
+        return view('pages.about', compact('aboutPage', 'whyChooseUsItems', 'statistics'));
     }
 
     public function contact()

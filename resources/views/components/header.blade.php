@@ -3,7 +3,7 @@
         <div class="flex items-center justify-between h-20">
             <div class="flex items-center gap-8">
                 <a href="{{ route('home') }}" class="flex items-center">
-                    <img src="{{ asset('build/assets/logo.svg') }}" alt="سوم العقارية" class="h-16 w-auto object-contain" style="max-width: 200px;">
+                    <img src="{{ asset('build/assets/logo.svg') }}" alt="سوم العقارية" class="h-20 w-auto object-contain" style="max-width: 220px;">
                 </a>
                 <nav class="hidden md:flex items-center gap-6">
                     <a href="{{ route('home') }}" class="text-white hover:text-white/80 transition-colors">الرئيسية</a>
@@ -16,11 +16,11 @@
             </div>
             <div class="flex items-center gap-4">
                 @auth
-                    <a href="{{ route('dashboard') }}" class="bg-white text-primary px-4 md:px-6 py-2 !rounded-button whitespace-nowrap hover:bg-white/90 transition-colors text-sm md:text-base font-semibold">
+                    <a href="{{ route('dashboard') }}" class="bg-white text-primary px-3 md:px-4 py-1.5 !rounded-button whitespace-nowrap hover:bg-white/90 transition-colors text-xs md:text-sm font-semibold ml-4">
                         لوحة التحكم
                     </a>
                 @else
-                    <button onclick="window.dispatchEvent(new CustomEvent('open-contact-modal'))" class="bg-white text-primary px-4 md:px-6 py-2 !rounded-button whitespace-nowrap hover:bg-white/90 transition-colors text-sm md:text-base font-semibold">
+                    <button onclick="window.dispatchEvent(new CustomEvent('open-contact-modal'))" class="bg-white text-primary px-3 md:px-4 py-1.5 !rounded-button whitespace-nowrap hover:bg-white/90 transition-colors text-xs md:text-sm font-semibold ml-4">
                         نستقبل طلباتكم هنا
                     </button>
                 @endauth
@@ -95,4 +95,19 @@
         </div>
     </div>
 </header>
+
+<!-- Tagline Section -->
+<section class="bg-white border-b border-gray-200 py-4">
+    <div class="container mx-auto px-4">
+        <div class="text-center">
+            <p class="text-lg md:text-xl text-gray-700 font-medium flex items-center justify-center flex-wrap gap-2">
+                <span class="text-primary font-semibold">خبره تحدث الفرق</span>
+                <i class="ri-checkbox-circle-line text-primary text-lg"></i>
+                <span class="text-primary font-semibold">ثقه تبنى على ارض صلبة</span>
+                <i class="ri-checkbox-circle-line text-primary text-lg"></i>
+                <span class="text-primary font-semibold">فريق متفاني لخدمة متكاملة</span>
+            </p>
+        </div>
+    </div>
+</section>
 

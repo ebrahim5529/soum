@@ -12,7 +12,7 @@ class Property extends Model
         'title', 'description', 'price', 'area', 'bedrooms', 'bathrooms',
         'floors', 'floor_number', 'property_type_id', 'service_type_id',
         'city_id', 'district', 'status', 'featured_status', 'likes_count',
-        'main_image', 'is_featured'
+        'main_image', 'is_featured', 'google_map_url'
     ];
 
     protected $casts = [

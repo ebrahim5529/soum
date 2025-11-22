@@ -131,8 +131,7 @@
                                 </div>
                                 <div>
                                     <h3 class="font-bold text-gray-800 mb-2 text-lg">العنوان</h3>
-                                    <p class="text-gray-600 mb-1">الرياض، المملكة العربية السعودية</p>
-                                    <p class="text-gray-600">شارع الملك فهد، حي العليا</p>
+                                    <p class="text-gray-600">القصيم - عنيزة - حي الفاخرية - طريق عمربن الخطاب</p>
                                 </div>
                             </div>
                             
@@ -140,11 +139,19 @@
                                 <div class="w-14 h-14 bg-gradient-to-br from-green-500 to-green-600 rounded-xl flex items-center justify-center flex-shrink-0 shadow-md">
                                     <i class="ri-phone-line text-white text-2xl"></i>
                                 </div>
-                                <div>
-                                    <h3 class="font-bold text-gray-800 mb-2 text-lg">الهاتف</h3>
-                                    <a href="tel:+966500179969" class="text-gray-600 hover:text-primary transition-colors block">
-                                        +966 50 017 9969
+                                <div class="flex-1">
+                                    <h3 class="font-bold text-gray-800 mb-2 text-lg">أرقام التواصل</h3>
+                                    <div class="space-y-1">
+                                        <a href="tel:0547413177" class="text-gray-600 hover:text-primary transition-colors block">
+                                            0547413177
+                                        </a>
+                                        <a href="tel:0556308601" class="text-gray-600 hover:text-primary transition-colors block">
+                                            055 630 8601
+                                        </a>
+                                        <a href="tel:0500179969" class="text-gray-600 hover:text-primary transition-colors block">
+                                            050 017 9969
                                     </a>
+                                    </div>
                                 </div>
                             </div>
                             
@@ -154,8 +161,8 @@
                                 </div>
                                 <div>
                                     <h3 class="font-bold text-gray-800 mb-2 text-lg">البريد الإلكتروني</h3>
-                                    <a href="mailto:Soum6050@hotmail.com" class="text-gray-600 hover:text-primary transition-colors block">
-                                        Soum6050@hotmail.com
+                                    <a href="mailto:Soum.unizah@gmail.com" class="text-gray-600 hover:text-primary transition-colors block break-all">
+                                        Soum.unizah@gmail.com
                                     </a>
                                 </div>
                             </div>
@@ -193,7 +200,7 @@
                             <div class="text-center text-gray-500 z-10">
                                 <i class="ri-map-pin-line text-5xl mb-3 text-primary"></i>
                                 <p class="text-lg font-semibold">خريطة الموقع</p>
-                                <p class="text-sm mt-2">الرياض، المملكة العربية السعودية</p>
+                                <p class="text-sm mt-2">القصيم - عنيزة - حي الفاخرية - طريق عمربن الخطاب</p>
                             </div>
                             <div class="absolute inset-0 bg-primary/5"></div>
                         </div>

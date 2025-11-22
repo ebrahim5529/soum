@@ -27,7 +27,15 @@
                     @forelse($properties as $property)
                         <tr class="border-b border-gray-100 hover:bg-gray-50">
                             <td class="py-4 px-6">
-                                <img src="{{ $property->main_image ? asset('storage/' . $property->main_image) : asset('images/placeholder.jpg') }}" 
+                                @php
+                                    $imageUrl = $property->main_image;
+                                    if ($imageUrl && !str_starts_with($imageUrl, 'http') && !str_starts_with($imageUrl, '/')) {
+                                        $imageUrl = asset('storage/' . $imageUrl);
+                                    } elseif (!$imageUrl) {
+                                        $imageUrl = asset('images/placeholder.jpg');
+                                    }
+                                @endphp
+                                <img src="{{ $imageUrl }}" 
                                      alt="{{ $property->title }}" 
                                      class="w-16 h-16 object-cover rounded-lg">
                             </td>

@@ -82,13 +82,20 @@
             <div>
                 <h3 class="text-lg font-semibold mb-4">نستقبل طلباتكم هنا</h3>
                 <div class="space-y-3 text-gray-300">
-                    <div class="flex items-center gap-3">
+                    <div>
+                        <div class="flex items-center gap-2 mb-2">
                         <i class="ri-phone-line"></i>
-                        <a href="tel:+966500179969" class="hover:text-white transition-colors">+966 50 017 9969</a>
+                            <span class="font-semibold text-white">أرقام التواصل</span>
+                        </div>
+                        <div class="flex flex-col gap-2 mr-6">
+                            <a href="tel:0547413177" class="hover:text-white transition-colors">0547413177</a>
+                            <a href="tel:0556308601" class="hover:text-white transition-colors">055 630 8601</a>
+                            <a href="tel:0500179969" class="hover:text-white transition-colors">050 017 9969</a>
+                        </div>
                     </div>
                     <div class="flex items-center gap-3">
                         <i class="ri-mail-line"></i>
-                        <a href="mailto:Soum6050@hotmail.com" class="hover:text-white transition-colors">Soum6050@hotmail.com</a>
+                        <a href="mailto:Soum.unizah@gmail.com" class="hover:text-white transition-colors break-all">Soum.unizah@gmail.com</a>
                     </div>
                     <div class="flex items-center gap-3">
                         <i class="ri-snapchat-line"></i>
@@ -98,9 +105,9 @@
                         <i class="ri-tiktok-line"></i>
                         <a href="https://www.tiktok.com/@soum6050?_r=1&_t=ZS-912b6Vl8Dzz" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors">TikTok</a>
                     </div>
-                    <div class="flex items-center gap-3">
-                        <i class="ri-map-pin-line"></i>
-                        <span>الرياض، المملكة العربية السعودية</span>
+                    <div class="flex items-start gap-3">
+                        <i class="ri-map-pin-line mt-1"></i>
+                        <span>القصيم - عنيزة - حي الفاخرية - طريق عمربن الخطاب</span>
                     </div>
                 </div>
             </div>
