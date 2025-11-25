@@ -173,8 +173,8 @@
                                 </div>
                                 <div>
                                     <h3 class="font-bold text-gray-800 mb-2 text-lg">ساعات العمل</h3>
-                                    <p class="text-gray-600 mb-1">السبت - الخميس: 9:00 ص - 6:00 م</p>
-                                    <p class="text-gray-600">الجمعة: مغلق</p>
+                                    <p class="text-gray-600 mb-1">في المكتب: 4:00 م - 9:00 م</p>
+                                    <p class="text-gray-600">على الأونلاين: 24 ساعة</p>
                                 </div>
                             </div>
                         </div>

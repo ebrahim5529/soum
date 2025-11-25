@@ -5,7 +5,7 @@
                 <a href="{{ route('home') }}" class="inline-block mb-4">
                     <img src="{{ asset('build/assets/logo.svg') }}" alt="سوم العقارية" class="h-12 w-auto object-contain" style="max-width: 150px; filter: brightness(1.2);">
                 </a>
-                <p class="text-gray-300 mb-4">مكتبك العقاري الموثوق لجميع احتياجاتك العقارية</p>
+                <p class="text-gray-300 mb-4">شركة المشحن والعتيبي للاستثمار العقاري .. خبرة تحدث الفرق،ثقة تبنى على ارض صلبة، فريق متفاني لخدمة متكاملة</p>
                 <div class="flex gap-4">
                     <a href="https://snapchat.com/t/P7CPqsOo" target="_blank" rel="noopener noreferrer" class="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center hover:bg-yellow-500 transition-colors">
                         <i class="ri-snapchat-fill"></i>
@@ -113,7 +113,7 @@
             </div>
         </div>
         <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
-            <p>&copy; 2024 مكتب العقار. جميع الحقوق محفوظة.</p>
+            <p>&copy; 2024 سوم العقارية . جميع الحقوق محفوظة.</p>
         </div>
     </div>
 </footer>

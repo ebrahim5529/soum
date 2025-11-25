@@ -15,8 +15,7 @@
                 </div>
                 <h1 class="text-5xl md:text-6xl font-bold mb-6">من نحن</h1>
                 <p class="text-xl md:text-2xl opacity-90 leading-relaxed">
-                    نحن مكتب عقاري رائد يقدم خدمات شاملة ومتميزة في مجال العقارات
-                </p>
+         شركة المشحن والعتيبي للاستثمار العقاري <BR>  نحن شركة متخصصة في مجالات الاستثمار والتسويق والتطوير العقاري. تحت إشراف فريق محترف يتمتع بخبرات وكفاءات عالية، نعمل جاهدين لتقديم خدمات ترضي توقعات عملائنا.                </p>
             </div>
         </div>
     </section>
@@ -27,7 +26,7 @@
             <div class="max-w-4xl mx-auto text-center mb-20">
                 <div class="inline-flex items-center gap-2 bg-primary/10 rounded-full px-6 py-2 mb-6">
                     <i class="ri-building-line text-primary text-xl"></i>
-                    <span class="text-primary font-semibold">مكتب العقار</span>
+                    <span class="text-primary font-semibold">سوم العقارية </span>
                 </div>
                 <div class="flex justify-center mb-6">
                     <div class="w-20 h-20 bg-gradient-to-br from-primary to-orange-600 rounded-full flex items-center justify-center shadow-lg">
@@ -35,7 +34,7 @@
                     </div>
                 </div>
                 <p class="text-xl text-gray-600 leading-relaxed mb-6">
-                    {{ $aboutPage->introduction ?: 'نحن فريق من الخبراء المتخصصين في مجال العقارات، نعمل منذ أكثر من 10 سنوات على تقديم أفضل الخدمات العقارية لعملائنا الكرام. نسعى جاهدين لتوفير حلول متميزة تلبي جميع احتياجاتك العقارية.' }}
+                    {{ $aboutPage->introduction ?: 'نحن شركة متخصصة في مجالات الاستثمار والتسويق والتطوير العقاري. تحت إشراف فريق محترف يتمتع بخبرات وكفاءات عالية، نعمل جاهدين لتقديم خدمات ترضي توقعات عملائنا.' }}
                 </p>
                 <div class="w-24 h-1 bg-primary mx-auto"></div>
             </div>

@@ -2,7 +2,7 @@
     <x-slot:title>تعديل عنصر "لماذا نحن؟"</x-slot:title>
 
     <div class="bg-white rounded-xl shadow-lg p-8">
-        <form action="{{ route('admin.why-choose-us.update', $whyChooseUsItem) }}" method="POST">
+        <form action="{{ route('admin.why-choose-us.update', $whyChooseUsItem->id) }}" method="POST">
             @csrf
             @method('PUT')
 

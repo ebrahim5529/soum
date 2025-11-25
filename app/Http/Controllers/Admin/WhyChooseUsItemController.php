@@ -38,12 +38,13 @@ class WhyChooseUsItemController extends Controller
             ->with('success', 'تم إنشاء العنصر بنجاح');
     }
 
-    public function edit(WhyChooseUsItem $whyChooseUsItem)
+    public function edit($why_choose_u)
     {
+        $whyChooseUsItem = WhyChooseUsItem::findOrFail($why_choose_u);
         return view('admin.why-choose-us.edit', compact('whyChooseUsItem'));
     }
 
-    public function update(Request $request, WhyChooseUsItem $whyChooseUsItem)
+    public function update(Request $request, $why_choose_u)
     {
         $validated = $request->validate([
             'title' => 'required|string|max:255',
@@ -53,14 +54,16 @@ class WhyChooseUsItemController extends Controller
             'order' => 'nullable|integer|min:0',
         ]);
 
+        $whyChooseUsItem = WhyChooseUsItem::findOrFail($why_choose_u);
         $whyChooseUsItem->update($validated);
 
         return redirect()->route('admin.why-choose-us.index')
             ->with('success', 'تم تحديث العنصر بنجاح');
     }
 
-    public function destroy(WhyChooseUsItem $whyChooseUsItem)
+    public function destroy($why_choose_u)
     {
+        $whyChooseUsItem = WhyChooseUsItem::findOrFail($why_choose_u);
         $whyChooseUsItem->delete();
 
         return redirect()->route('admin.why-choose-us.index')

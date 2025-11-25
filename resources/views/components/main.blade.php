@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ isset($title) ? $title : 'مكتب العقار - خدمات عقارية متكاملة' }}</title>
+    <title>{{ isset($title) ? $title : 'سوم العقارية  - خدمات عقارية متكاملة' }}</title>
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">

@@ -37,7 +37,9 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(
     Route::put('statistics/{statistic}', [App\Http\Controllers\Admin\StatisticController::class, 'update'])->name('statistics.update');
     
     // Why Choose Us Management
-    Route::resource('why-choose-us', App\Http\Controllers\Admin\WhyChooseUsItemController::class);
+    Route::resource('why-choose-us', App\Http\Controllers\Admin\WhyChooseUsItemController::class)->parameters([
+        'why-choose-us' => 'why_choose_u'
+    ]);
 });
 
 // Keep the old dashboard route for compatibility
