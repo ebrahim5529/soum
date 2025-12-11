@@ -21,7 +21,13 @@
                 </div>
 
                 <div>
-                    <label class="block text-gray-700 font-semibold mb-2">نوع العقار *</label>
+                    <div class="flex items-center justify-between mb-2">
+                        <label class="block text-gray-700 font-semibold">نوع العقار *</label>
+                        <a href="{{ route('admin.property-types.index') }}" target="_blank" class="text-primary hover:text-blue-700 text-sm flex items-center gap-1">
+                            <i class="ri-add-line"></i>
+                            إضافة نوع جديد
+                        </a>
+                    </div>
                     <select name="property_type_id" required
                         class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:border-primary focus:outline-none">
                         <option value="">اختر النوع</option>
@@ -35,7 +41,13 @@
                 </div>
 
                 <div>
-                    <label class="block text-gray-700 font-semibold mb-2">نوع الخدمة *</label>
+                    <div class="flex items-center justify-between mb-2">
+                        <label class="block text-gray-700 font-semibold">نوع الخدمة *</label>
+                        <a href="{{ route('admin.service-types.index') }}" target="_blank" class="text-primary hover:text-blue-700 text-sm flex items-center gap-1">
+                            <i class="ri-add-line"></i>
+                            إضافة نوع جديد
+                        </a>
+                    </div>
                     <select name="service_type_id" required
                         class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:border-primary focus:outline-none">
                         <option value="">اختر الخدمة</option>

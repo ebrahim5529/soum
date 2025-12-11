@@ -40,6 +40,16 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(
     Route::resource('why-choose-us', App\Http\Controllers\Admin\WhyChooseUsItemController::class)->parameters([
         'why-choose-us' => 'why_choose_u'
     ]);
+    
+    // Property Types Management
+    Route::resource('property-types', App\Http\Controllers\Admin\PropertyTypeController::class);
+    
+    // Service Types Management
+    Route::resource('service-types', App\Http\Controllers\Admin\ServiceTypeController::class);
+    
+    // Contact Settings Management
+    Route::get('contact-settings', [App\Http\Controllers\Admin\ContactSettingController::class, 'index'])->name('contact-settings.index');
+    Route::put('contact-settings', [App\Http\Controllers\Admin\ContactSettingController::class, 'update'])->name('contact-settings.update');
 });
 
 // Keep the old dashboard route for compatibility

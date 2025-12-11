@@ -18,6 +18,7 @@
 
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @stack('styles')
     @stack('scripts')
 </head>
 <body class="bg-gray-100 font-sans antialiased" 
@@ -93,6 +94,10 @@
                         <i class="ri-mail-line"></i>
                         <span>التواصل</span>
                     </a>
+                    <a href="{{ route('admin.contact-settings.index') }}" @click="!isDesktop && (sidebarOpen = false)" class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-gray-700 transition-colors {{ request()->routeIs('admin.contact-settings.*') ? 'bg-primary' : '' }}">
+                        <i class="ri-map-pin-line"></i>
+                        <span>إعدادات الاتصال</span>
+                    </a>
                     <a href="{{ route('admin.about.index') }}" @click="!isDesktop && (sidebarOpen = false)" class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-gray-700 transition-colors {{ request()->routeIs('admin.about.*') ? 'bg-primary' : '' }}">
                         <i class="ri-information-line"></i>
                         <span>من نحن</span>
@@ -157,6 +162,8 @@
             </main>
         </div>
     </div>
+    
+    @stack('scripts')
 </body>
 </html>
 

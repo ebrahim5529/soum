@@ -23,7 +23,7 @@
 
             <div class="mb-6">
                 <label class="block text-gray-700 font-semibold mb-2">محتوى المقال *</label>
-                <textarea name="content" rows="15" required
+                <textarea name="content" id="summernote" required
                     class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:border-primary focus:outline-none"
                     placeholder="اكتب محتوى المقال هنا...">{{ old('content') }}</textarea>
                 @error('content') <p class="text-red-500 text-sm mt-1">{{ $message }}</p> @enderror
@@ -66,5 +66,50 @@
             </div>
         </form>
     </div>
+
+    @push('styles')
+    <!-- Summernote CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.20/dist/summernote-lite.min.css" rel="stylesheet">
+    @endpush
+
+    @push('scripts')
+    <!-- jQuery (required for Summernote) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    
+    <!-- Summernote JS -->
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.20/dist/summernote-lite.min.js"></script>
+    
+    <!-- Summernote Arabic Language -->
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.20/dist/lang/summernote-ar-AR.min.js"></script>
+    
+    <script>
+        $(document).ready(function() {
+            $('#summernote').summernote({
+                height: 400,
+                lang: 'ar-AR',
+                toolbar: [
+                    ['style', ['style']],
+                    ['font', ['bold', 'underline', 'clear']],
+                    ['fontname', ['fontname']],
+                    ['fontsize', ['fontsize']],
+                    ['color', ['color']],
+                    ['para', ['ul', 'ol', 'paragraph']],
+                    ['table', ['table']],
+                    ['insert', ['link', 'picture', 'video']],
+                    ['view', ['fullscreen', 'codeview', 'help']]
+                ],
+                placeholder: 'اكتب محتوى المقال هنا...',
+                dialogsInBody: true,
+                dialogsFade: true,
+                callbacks: {
+                    onImageUpload: function(files) {
+                        // Handle image upload if needed
+                        // You can implement image upload to server here
+                    }
+                }
+            });
+        });
+    </script>
+    @endpush
 </x-admin>
 

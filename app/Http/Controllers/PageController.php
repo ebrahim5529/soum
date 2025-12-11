@@ -21,7 +21,8 @@ class PageController extends Controller
 
     public function contact()
     {
-        return view('pages.contact');
+        $contactSetting = \App\Models\ContactSetting::first();
+        return view('pages.contact', compact('contactSetting'));
     }
 
     public function storeContact(Request $request)

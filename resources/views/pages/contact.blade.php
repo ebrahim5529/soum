@@ -131,7 +131,7 @@
                                 </div>
                                 <div>
                                     <h3 class="font-bold text-gray-800 mb-2 text-lg">العنوان</h3>
-                                    <p class="text-gray-600">القصيم - عنيزة - حي الفاخرية - طريق عمربن الخطاب</p>
+                                    <p class="text-gray-600">{{ $contactSetting->address ?? 'القصيم - عنيزة - حي الفاخرية - طريق عمربن الخطاب' }}</p>
                                 </div>
                             </div>
                             
@@ -142,15 +142,21 @@
                                 <div class="flex-1">
                                     <h3 class="font-bold text-gray-800 mb-2 text-lg">أرقام التواصل</h3>
                                     <div class="space-y-1">
-                                        <a href="tel:0547413177" class="text-gray-600 hover:text-primary transition-colors block">
-                                            0547413177
-                                        </a>
-                                        <a href="tel:0556308601" class="text-gray-600 hover:text-primary transition-colors block">
-                                            055 630 8601
-                                        </a>
-                                        <a href="tel:0500179969" class="text-gray-600 hover:text-primary transition-colors block">
-                                            050 017 9969
-                                    </a>
+                                        @if($contactSetting && $contactSetting->phone_1)
+                                            <a href="tel:{{ $contactSetting->phone_1 }}" class="text-gray-600 hover:text-primary transition-colors block">
+                                                {{ $contactSetting->phone_1 }}
+                                            </a>
+                                        @endif
+                                        @if($contactSetting && $contactSetting->phone_2)
+                                            <a href="tel:{{ $contactSetting->phone_2 }}" class="text-gray-600 hover:text-primary transition-colors block">
+                                                {{ $contactSetting->phone_2 }}
+                                            </a>
+                                        @endif
+                                        @if($contactSetting && $contactSetting->phone_3)
+                                            <a href="tel:{{ $contactSetting->phone_3 }}" class="text-gray-600 hover:text-primary transition-colors block">
+                                                {{ $contactSetting->phone_3 }}
+                                            </a>
+                                        @endif
                                     </div>
                                 </div>
                             </div>
@@ -161,9 +167,15 @@
                                 </div>
                                 <div>
                                     <h3 class="font-bold text-gray-800 mb-2 text-lg">البريد الإلكتروني</h3>
-                                    <a href="mailto:Soum.unizah@gmail.com" class="text-gray-600 hover:text-primary transition-colors block break-all">
-                                        Soum.unizah@gmail.com
-                                    </a>
+                                    @if($contactSetting && $contactSetting->email)
+                                        <a href="mailto:{{ $contactSetting->email }}" class="text-gray-600 hover:text-primary transition-colors block break-all">
+                                            {{ $contactSetting->email }}
+                                        </a>
+                                    @else
+                                        <a href="mailto:Soum.unizah@gmail.com" class="text-gray-600 hover:text-primary transition-colors block break-all">
+                                            Soum.unizah@gmail.com
+                                        </a>
+                                    @endif
                                 </div>
                             </div>
                             
@@ -173,8 +185,16 @@
                                 </div>
                                 <div>
                                     <h3 class="font-bold text-gray-800 mb-2 text-lg">ساعات العمل</h3>
-                                    <p class="text-gray-600 mb-1">في المكتب: 4:00 م - 9:00 م</p>
-                                    <p class="text-gray-600">على الأونلاين: 24 ساعة</p>
+                                    @if($contactSetting && $contactSetting->working_hours_office)
+                                        <p class="text-gray-600 mb-1">في المكتب: {{ $contactSetting->working_hours_office }}</p>
+                                    @else
+                                        <p class="text-gray-600 mb-1">في المكتب: 4:00 م - 9:00 م</p>
+                                    @endif
+                                    @if($contactSetting && $contactSetting->working_hours_online)
+                                        <p class="text-gray-600">على الأونلاين: {{ $contactSetting->working_hours_online }}</p>
+                                    @else
+                                        <p class="text-gray-600">على الأونلاين: 24 ساعة</p>
+                                    @endif
                                 </div>
                             </div>
                         </div>
@@ -194,16 +214,22 @@
                         </div>
                     </div>
 
-                    <!-- Map Placeholder -->
+                    <!-- Map -->
                     <div class="bg-white rounded-2xl shadow-xl overflow-hidden">
-                        <div class="bg-gradient-to-br from-gray-100 to-gray-200 h-64 flex items-center justify-center relative">
-                            <div class="text-center text-gray-500 z-10">
-                                <i class="ri-map-pin-line text-5xl mb-3 text-primary"></i>
-                                <p class="text-lg font-semibold">خريطة الموقع</p>
-                                <p class="text-sm mt-2">القصيم - عنيزة - حي الفاخرية - طريق عمربن الخطاب</p>
+                        @if($contactSetting && $contactSetting->google_map_embed)
+                            <div class="w-full h-64">
+                                {!! $contactSetting->google_map_embed !!}
                             </div>
-                            <div class="absolute inset-0 bg-primary/5"></div>
-                        </div>
+                        @else
+                            <div class="bg-gradient-to-br from-gray-100 to-gray-200 h-64 flex items-center justify-center relative">
+                                <div class="text-center text-gray-500 z-10">
+                                    <i class="ri-map-pin-line text-5xl mb-3 text-primary"></i>
+                                    <p class="text-lg font-semibold">خريطة الموقع</p>
+                                    <p class="text-sm mt-2">{{ $contactSetting->address ?? 'القصيم - عنيزة - حي الفاخرية - طريق عمربن الخطاب' }}</p>
+                                </div>
+                                <div class="absolute inset-0 bg-primary/5"></div>
+                            </div>
+                        @endif
                     </div>
                 </div>
             </div>
