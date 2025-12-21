@@ -144,6 +144,9 @@
                                 <div class="flex-1">
                                     <h3 class="font-bold text-gray-800 mb-2 text-lg">أرقام التواصل</h3>
                                     <div class="space-y-1">
+                                        <a href="https://wa.me/966547413177" target="_blank" rel="noopener noreferrer" class="text-gray-600 hover:text-primary transition-colors block">
+                                            0547413177
+                                        </a>
                                         <a href="https://wa.me/966500179969" target="_blank" rel="noopener noreferrer" class="text-gray-600 hover:text-primary transition-colors block">
                                             0500179969
                                         </a>

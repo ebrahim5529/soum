@@ -88,6 +88,7 @@
                             <span class="font-semibold text-white">أرقام التواصل</span>
                         </div>
                         <div class="flex flex-col gap-2 mr-6">
+                            <a href="https://wa.me/966547413177" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors">0547413177</a>
                             <a href="https://wa.me/966500179969" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors">0500179969</a>
                             <a href="https://wa.me/966556308601" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors">0556308601</a>
                         </div>
