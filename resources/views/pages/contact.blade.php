@@ -139,26 +139,17 @@
                             
                             <div class="flex items-start gap-4 p-4 rounded-xl hover:bg-gray-50 transition-colors">
                                 <div class="w-14 h-14 bg-gradient-to-br from-green-500 to-green-600 rounded-xl flex items-center justify-center flex-shrink-0 shadow-md">
-                                    <i class="ri-phone-line text-white text-2xl"></i>
+                                    <i class="ri-whatsapp-line text-white text-2xl"></i>
                                 </div>
                                 <div class="flex-1">
                                     <h3 class="font-bold text-gray-800 mb-2 text-lg">أرقام التواصل</h3>
                                     <div class="space-y-1">
-                                        @if($contactSetting && $contactSetting->phone_1)
-                                            <a href="tel:{{ $contactSetting->phone_1 }}" class="text-gray-600 hover:text-primary transition-colors block">
-                                                {{ $contactSetting->phone_1 }}
-                                            </a>
-                                        @endif
-                                        @if($contactSetting && $contactSetting->phone_2)
-                                            <a href="tel:{{ $contactSetting->phone_2 }}" class="text-gray-600 hover:text-primary transition-colors block">
-                                                {{ $contactSetting->phone_2 }}
-                                            </a>
-                                        @endif
-                                        @if($contactSetting && $contactSetting->phone_3)
-                                            <a href="tel:{{ $contactSetting->phone_3 }}" class="text-gray-600 hover:text-primary transition-colors block">
-                                                {{ $contactSetting->phone_3 }}
-                                            </a>
-                                        @endif
+                                        <a href="https://wa.me/966500179969" target="_blank" rel="noopener noreferrer" class="text-gray-600 hover:text-primary transition-colors block">
+                                            0500179969
+                                        </a>
+                                        <a href="https://wa.me/966556308601" target="_blank" rel="noopener noreferrer" class="text-gray-600 hover:text-primary transition-colors block">
+                                            0556308601
+                                        </a>
                                     </div>
                                 </div>
                             </div>

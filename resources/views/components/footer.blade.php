@@ -84,13 +84,12 @@
                 <div class="space-y-3 text-gray-300">
                     <div>
                         <div class="flex items-center gap-2 mb-2">
-                        <i class="ri-phone-line"></i>
+                        <i class="ri-whatsapp-line"></i>
                             <span class="font-semibold text-white">أرقام التواصل</span>
                         </div>
                         <div class="flex flex-col gap-2 mr-6">
-                            <a href="tel:0547413177" class="hover:text-white transition-colors">0547413177</a>
-                            <a href="tel:0556308601" class="hover:text-white transition-colors">055 630 8601</a>
-                            <a href="tel:0500179969" class="hover:text-white transition-colors">050 017 9969</a>
+                            <a href="https://wa.me/966500179969" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors">0500179969</a>
+                            <a href="https://wa.me/966556308601" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors">0556308601</a>
                         </div>
                     </div>
                     <div class="flex items-center gap-3">
