@@ -6,12 +6,12 @@
                 <!-- Images -->
                 <div>
                     <div class="bg-white rounded-2xl overflow-hidden shadow-lg mb-4">
-                        <img src="{{ $property->main_image }}" alt="{{ $property->title }}" class="w-full h-96 object-cover">
+                        <img src="{{ $property->main_image_url }}" alt="{{ $property->title }}" class="w-full h-96 object-cover">
                     </div>
                     @if($property->images->count() > 0)
                         <div class="grid grid-cols-4 gap-4">
                             @foreach($property->images->take(4) as $image)
-                                <img src="{{ $image->image_path }}" alt="{{ $property->title }}" class="w-full h-24 object-cover rounded-lg">
+                                <img src="{{ $image->image_url }}" alt="{{ $property->title }}" class="w-full h-24 object-cover rounded-lg">
                             @endforeach
                         </div>
                     @endif

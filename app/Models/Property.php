@@ -40,4 +40,21 @@ class Property extends Model
     {
         return $this->hasMany(PropertyImage::class)->orderBy('order');
     }
+
+    /**
+     * Get the full URL for the main image
+     */
+    public function getMainImageUrlAttribute()
+    {
+        if (!$this->main_image) {
+            return asset('images/placeholder.jpg');
+        }
+
+        // If it's already a full URL, return it
+        if (str_starts_with($this->main_image, 'http') || str_starts_with($this->main_image, '/')) {
+            return $this->main_image;
+        }
+
+        return asset('storage/' . $this->main_image);
+    }
 }

@@ -173,7 +173,7 @@
                     <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
                         @foreach($property->images as $image)
                             <div class="relative">
-                                <img src="{{ asset('storage/' . $image->image_path) }}" alt="صورة {{ $image->id }}" class="w-full h-32 object-cover rounded-lg">
+                                <img src="{{ $image->image_url }}" alt="صورة {{ $image->id }}" class="w-full h-32 object-cover rounded-lg">
                                 <label class="absolute top-2 right-2 flex items-center gap-2 bg-red-500 text-white px-2 py-1 rounded text-sm cursor-pointer">
                                     <input type="checkbox" name="delete_images[]" value="{{ $image->id }}" class="w-4 h-4">
                                     <span>حذف</span>

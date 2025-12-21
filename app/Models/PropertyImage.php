@@ -13,4 +13,21 @@ class PropertyImage extends Model
     {
         return $this->belongsTo(Property::class);
     }
+
+    /**
+     * Get the full URL for the image
+     */
+    public function getImageUrlAttribute()
+    {
+        if (!$this->image_path) {
+            return asset('images/placeholder.jpg');
+        }
+
+        // If it's already a full URL, return it
+        if (str_starts_with($this->image_path, 'http') || str_starts_with($this->image_path, '/')) {
+            return $this->image_path;
+        }
+
+        return asset('storage/' . $this->image_path);
+    }
 }
