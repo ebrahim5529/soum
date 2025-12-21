@@ -131,7 +131,9 @@
                                 </div>
                                 <div>
                                     <h3 class="font-bold text-gray-800 mb-2 text-lg">العنوان</h3>
-                                    <p class="text-gray-600">{{ $contactSetting->address ?? 'القصيم - عنيزة - حي الفاخرية - طريق عمربن الخطاب' }}</p>
+                                    <a href="https://www.google.com/maps/place/%D8%B3%D9%88%D9%85+%D8%A7%D9%84%D8%B9%D9%82%D8%A7%D8%B1%D9%8A%D9%87%E2%80%AD/@26.0609484,43.9876864,596m/data=!3m2!1e3!4b1!4m6!3m5!1s0x1581ede7e1ad059f:0x7173a7fb45f3cc32!8m2!3d26.0609484!4d43.9876864!16s%2Fg%2F11rn04vxr_?entry=ttu&g_ep=EgoyMDI1MTIwOS4wIKXMDSoKLDEwMDc5MjA2N0gBUAM%3D" target="_blank" rel="noopener noreferrer" class="text-gray-600 hover:text-primary transition-colors block cursor-pointer">
+                                        {{ $contactSetting->address ?? 'القصيم - عنيزة - حي الفاخرية - طريق عمربن الخطاب' }}
+                                    </a>
                                 </div>
                             </div>
                             
@@ -216,20 +218,22 @@
 
                     <!-- Map -->
                     <div class="bg-white rounded-2xl shadow-xl overflow-hidden">
-                        @if($contactSetting && $contactSetting->google_map_embed)
-                            <div class="w-full h-64">
-                                {!! $contactSetting->google_map_embed !!}
-                            </div>
-                        @else
-                            <div class="bg-gradient-to-br from-gray-100 to-gray-200 h-64 flex items-center justify-center relative">
-                                <div class="text-center text-gray-500 z-10">
-                                    <i class="ri-map-pin-line text-5xl mb-3 text-primary"></i>
-                                    <p class="text-lg font-semibold">خريطة الموقع</p>
-                                    <p class="text-sm mt-2">{{ $contactSetting->address ?? 'القصيم - عنيزة - حي الفاخرية - طريق عمربن الخطاب' }}</p>
-                                </div>
-                                <div class="absolute inset-0 bg-primary/5"></div>
-                            </div>
-                        @endif
+                        <div class="p-6 border-b border-gray-200">
+                            <h3 class="text-xl font-bold text-gray-800 mb-2">خريطة الموقع</h3>
+                            <p class="text-gray-600 text-sm">القصيم - عنيزة - حي الفاخرية - طريق عمربن الخطاب</p>
+                        </div>
+                        <div class="w-full h-96">
+                            <iframe 
+                                src="https://www.google.com/maps?q=26.0609484,43.9876864&hl=ar&z=15&output=embed"
+                                width="100%" 
+                                height="100%" 
+                                style="border:0;" 
+                                allowfullscreen="" 
+                                loading="lazy" 
+                                referrerpolicy="no-referrer-when-downgrade"
+                                class="w-full h-full">
+                            </iframe>
+                        </div>
                     </div>
                 </div>
             </div>
