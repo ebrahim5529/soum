@@ -89,9 +89,9 @@
                             </div>
                         @endif
 
-                        <button class="w-full bg-primary text-white px-8 py-3 !rounded-button hover:bg-orange-600 transition-colors text-lg">
+                        <a href="{{ route('contact') }}" class="inline-block w-full text-center bg-primary text-white px-8 py-3 !rounded-button hover:bg-orange-600 transition-colors text-lg">
                             اتصل بنا
-                        </button>
+                        </a>
                     </div>
                 </div>
             </div>
