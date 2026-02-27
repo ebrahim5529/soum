@@ -12,7 +12,7 @@ class Property extends Model
         'title', 'description', 'price', 'area', 'bedrooms', 'bathrooms',
         'floors', 'floor_number', 'property_type_id', 'service_type_id',
         'city_id', 'district', 'status', 'featured_status', 'likes_count',
-        'main_image', 'is_featured', 'google_map_url'
+        'image', 'is_featured', 'google_map_url', 'license_number'
     ];
 
     protected $casts = [
@@ -46,15 +46,15 @@ class Property extends Model
      */
     public function getMainImageUrlAttribute()
     {
-        if (!$this->main_image) {
+        if (!$this->image) {
             return asset('images/placeholder.jpg');
         }
 
         // If it's already a full URL, return it
-        if (str_starts_with($this->main_image, 'http') || str_starts_with($this->main_image, '/')) {
-            return $this->main_image;
+        if (str_starts_with($this->image, 'http') || str_starts_with($this->image, '/')) {
+            return $this->image;
         }
 
-        return asset('storage/' . $this->main_image);
+        return route('images.show', ['path' => $this->image]);
     }
 }

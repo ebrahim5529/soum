@@ -15,8 +15,8 @@
                 </div>
 
                 <div>
-                    <label class="block text-gray-700 font-semibold mb-2">السعر (ريال) *</label>
-                    <input type="number" name="price" value="{{ old('price', $property->price) }}" step="0.01" required
+                    <label class="block text-gray-700 font-semibold mb-2">السعر (ريال)</label>
+                    <input type="number" name="price" value="{{ old('price', $property->price) }}" step="0.01"
                         class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:border-primary focus:outline-none">
                     @error('price') <p class="text-red-500 text-sm mt-1">{{ $message }}</p> @enderror
                 </div>
@@ -124,6 +124,12 @@
                 </div>
 
                 <div>
+                    <label class="block text-gray-700 font-semibold mb-2">رقم الترخيص</label>
+                    <input type="text" name="license_number" value="{{ old('license_number', $property->license_number) }}"
+                        class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:border-primary focus:outline-none">
+                </div>
+
+                <div>
                     <label class="block text-gray-700 font-semibold mb-2">حالة مميز</label>
                     <input type="text" name="featured_status" value="{{ old('featured_status', $property->featured_status) }}"
                         placeholder="جديد، مميز، استثمار"
@@ -155,12 +161,12 @@
 
             <div class="mb-6">
                 <label class="block text-gray-700 font-semibold mb-2">الصورة الرئيسية</label>
-                @if($property->main_image)
+                @if($property->image)
                     <div class="mb-3">
-                        <img src="{{ asset('storage/' . $property->main_image) }}" alt="الصورة الحالية" class="w-32 h-32 object-cover rounded-lg">
+                        <img src="{{ $property->main_image_url }}" alt="الصورة الحالية" class="w-32 h-32 object-cover rounded-lg">
                     </div>
                 @endif
-                <input type="file" name="main_image" accept="image/*"
+                <input type="file" name="image" accept="image/*"
                     class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:border-primary focus:outline-none">
                 <p class="text-gray-500 text-sm mt-1">اتركه فارغاً إذا لم ترد تغيير الصورة</p>
                 @error('main_image') <p class="text-red-500 text-sm mt-1">{{ $message }}</p> @enderror

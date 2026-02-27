@@ -36,12 +36,13 @@ class PropertyController extends Controller
         $validated = $request->validate([
             'title' => 'required|string|max:255',
             'description' => 'nullable|string',
-            'price' => 'required|numeric|min:0',
+            'price' => 'nullable|numeric|min:0',
             'area' => 'required|numeric|min:0',
             'bedrooms' => 'nullable|integer|min:0',
             'bathrooms' => 'nullable|integer|min:0',
             'floors' => 'nullable|integer|min:0',
             'floor_number' => 'nullable|string|max:255',
+            'license_number' => 'nullable|string|max:255',
             'property_type_id' => 'required|exists:property_types,id',
             'service_type_id' => 'required|exists:service_types,id',
             'city_id' => 'required|exists:cities,id',
@@ -49,16 +50,16 @@ class PropertyController extends Controller
             'status' => 'required|in:available,sold,rented',
             'featured_status' => 'nullable|string',
             'google_map_url' => 'nullable|string',
-            'main_image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
             'images' => 'nullable|array',
             'images.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
             'is_featured' => 'boolean',
         ]);
 
         // رفع الصورة الرئيسية
-        if ($request->hasFile('main_image')) {
-            $mainImagePath = $request->file('main_image')->store('properties', 'public');
-            $validated['main_image'] = $mainImagePath;
+        if ($request->hasFile('image')) {
+            $mainImagePath = $request->file('image')->store('awareness-programs', 'public');
+            $validated['image'] = $mainImagePath;
         }
 
         $validated['is_featured'] = $request->has('is_featured');
@@ -69,7 +70,7 @@ class PropertyController extends Controller
         // رفع الصور الإضافية
         if ($request->hasFile('images')) {
             foreach ($request->file('images') as $index => $image) {
-                $imagePath = $image->store('properties', 'public');
+                $imagePath = $image->store('awareness-programs', 'public');
                 PropertyImage::create([
                     'property_id' => $property->id,
                     'image_path' => $imagePath,
@@ -104,12 +105,13 @@ class PropertyController extends Controller
         $validated = $request->validate([
             'title' => 'required|string|max:255',
             'description' => 'nullable|string',
-            'price' => 'required|numeric|min:0',
+            'price' => 'nullable|numeric|min:0',
             'area' => 'required|numeric|min:0',
             'bedrooms' => 'nullable|integer|min:0',
             'bathrooms' => 'nullable|integer|min:0',
             'floors' => 'nullable|integer|min:0',
             'floor_number' => 'nullable|string|max:255',
+            'license_number' => 'nullable|string|max:255',
             'property_type_id' => 'required|exists:property_types,id',
             'service_type_id' => 'required|exists:service_types,id',
             'city_id' => 'required|exists:cities,id',
@@ -117,7 +119,7 @@ class PropertyController extends Controller
             'status' => 'required|in:available,sold,rented',
             'featured_status' => 'nullable|string',
             'google_map_url' => 'nullable|string',
-            'main_image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'images' => 'nullable|array',
             'images.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
             'delete_images' => 'nullable|array',
@@ -125,12 +127,12 @@ class PropertyController extends Controller
         ]);
 
         // تحديث الصورة الرئيسية
-        if ($request->hasFile('main_image')) {
-            if ($property->main_image) {
-                Storage::disk('public')->delete($property->main_image);
+        if ($request->hasFile('image')) {
+            if ($property->image) {
+                Storage::disk('public')->delete($property->image);
             }
-            $mainImagePath = $request->file('main_image')->store('properties', 'public');
-            $validated['main_image'] = $mainImagePath;
+            $mainImagePath = $request->file('image')->store('awareness-programs', 'public');
+            $validated['image'] = $mainImagePath;
         }
 
         $validated['is_featured'] = $request->has('is_featured');
@@ -152,7 +154,7 @@ class PropertyController extends Controller
         if ($request->hasFile('images')) {
             $lastOrder = PropertyImage::where('property_id', $property->id)->max('order') ?? -1;
             foreach ($request->file('images') as $index => $image) {
-                $imagePath = $image->store('properties', 'public');
+                $imagePath = $image->store('awareness-programs', 'public');
                 PropertyImage::create([
                     'property_id' => $property->id,
                     'image_path' => $imagePath,
@@ -168,8 +170,8 @@ class PropertyController extends Controller
     public function destroy(Property $property)
     {
         // حذف الصور
-        if ($property->main_image) {
-            Storage::disk('public')->delete($property->main_image);
+        if ($property->image) {
+            Storage::disk('public')->delete($property->image);
         }
 
         foreach ($property->images as $image) {

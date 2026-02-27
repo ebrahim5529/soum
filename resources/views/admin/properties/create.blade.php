@@ -14,8 +14,8 @@
                 </div>
 
                 <div>
-                    <label class="block text-gray-700 font-semibold mb-2">السعر (ريال) *</label>
-                    <input type="number" name="price" value="{{ old('price') }}" step="0.01" required
+                    <label class="block text-gray-700 font-semibold mb-2">السعر (ريال)</label>
+                    <input type="number" name="price" value="{{ old('price') }}" step="0.01"
                         class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:border-primary focus:outline-none">
                     @error('price') <p class="text-red-500 text-sm mt-1">{{ $message }}</p> @enderror
                 </div>
@@ -123,6 +123,12 @@
                 </div>
 
                 <div>
+                    <label class="block text-gray-700 font-semibold mb-2">رقم الترخيص</label>
+                    <input type="text" name="license_number" value="{{ old('license_number') }}"
+                        class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:border-primary focus:outline-none">
+                </div>
+
+                <div>
                     <label class="block text-gray-700 font-semibold mb-2">حالة مميز</label>
                     <input type="text" name="featured_status" value="{{ old('featured_status') }}"
                         placeholder="جديد، مميز، استثمار"
@@ -154,7 +160,7 @@
 
             <div class="mb-6">
                 <label class="block text-gray-700 font-semibold mb-2">الصورة الرئيسية *</label>
-                <input type="file" name="main_image" accept="image/*" required
+                <input type="file" name="image" accept="image/*" required
                     class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:border-primary focus:outline-none">
                 @error('main_image') <p class="text-red-500 text-sm mt-1">{{ $message }}</p> @enderror
             </div>
