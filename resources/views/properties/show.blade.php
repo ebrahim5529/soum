@@ -194,32 +194,32 @@
 
     <!-- Lightbox Modal -->
     <div id="lightbox" class="fixed inset-0 z-50 hidden" role="dialog" aria-modal="true" aria-label="معرض الصور">
-        <div class="absolute inset-0 bg-black/90 backdrop-blur-sm" onclick="closeLightbox()"></div>
+        <div class="absolute inset-0 bg-white" onclick="closeLightbox()"></div>
 
-        <button onclick="closeLightbox()" class="absolute top-4 left-4 z-10 text-white/80 hover:text-white transition-colors bg-white/10 hover:bg-white/20 rounded-full w-12 h-12 flex items-center justify-center" aria-label="إغلاق">
+        <button onclick="closeLightbox()" class="absolute top-4 left-4 z-10 text-gray-500 hover:text-gray-800 transition-colors bg-gray-100 hover:bg-gray-200 rounded-full w-12 h-12 flex items-center justify-center" aria-label="إغلاق">
             <i class="ri-close-line text-2xl"></i>
         </button>
 
-        <div class="absolute top-4 right-4 z-10 text-white/80 bg-white/10 rounded-full px-4 py-2 text-sm backdrop-blur-sm">
+        <div class="absolute top-4 right-4 z-10 text-gray-600 bg-gray-100 rounded-full px-4 py-2 text-sm">
             <span id="lightbox-counter"></span>
         </div>
 
-        <button id="lightbox-prev" onclick="lightboxNav(-1)" class="absolute right-4 top-1/2 -translate-y-1/2 z-10 text-white/80 hover:text-white transition-colors bg-white/10 hover:bg-white/20 rounded-full w-14 h-14 flex items-center justify-center" aria-label="السابق">
+        <button id="lightbox-prev" onclick="lightboxNav(-1)" class="absolute right-4 top-1/2 -translate-y-1/2 z-10 text-gray-500 hover:text-gray-800 transition-colors bg-gray-100 hover:bg-gray-200 rounded-full w-14 h-14 flex items-center justify-center" aria-label="السابق">
             <i class="ri-arrow-right-s-line text-3xl"></i>
         </button>
-        <button id="lightbox-next" onclick="lightboxNav(1)" class="absolute left-4 top-1/2 -translate-y-1/2 z-10 text-white/80 hover:text-white transition-colors bg-white/10 hover:bg-white/20 rounded-full w-14 h-14 flex items-center justify-center" aria-label="التالي">
+        <button id="lightbox-next" onclick="lightboxNav(1)" class="absolute left-4 top-1/2 -translate-y-1/2 z-10 text-gray-500 hover:text-gray-800 transition-colors bg-gray-100 hover:bg-gray-200 rounded-full w-14 h-14 flex items-center justify-center" aria-label="التالي">
             <i class="ri-arrow-left-s-line text-3xl"></i>
         </button>
 
         <div class="flex items-center justify-center h-full px-20 py-24">
-            <img id="lightbox-img" src="" alt="" class="max-w-full max-h-full object-contain rounded-lg shadow-2xl transition-opacity duration-300">
+            <img id="lightbox-img" src="" alt="" class="max-w-full max-h-full object-contain rounded-lg transition-opacity duration-300">
         </div>
 
-        <div id="lightbox-thumbs" class="absolute bottom-0 left-0 right-0 bg-black/60 backdrop-blur-sm py-3 px-4">
+        <div id="lightbox-thumbs" class="absolute bottom-0 left-0 right-0 bg-gray-50 border-t border-gray-200 py-3 px-4">
             <div class="flex gap-2 justify-center overflow-x-auto max-w-4xl mx-auto" id="lightbox-thumbs-container">
                 @foreach($allImages as $index => $image)
                     <img src="{{ $image['url'] }}" alt="{{ $image['alt'] }}" onclick="goToSlide({{ $index }})"
-                         class="lightbox-thumb w-16 h-16 object-cover rounded-lg cursor-pointer border-2 border-transparent opacity-50 hover:opacity-80 transition-all duration-200 flex-shrink-0"
+                         class="lightbox-thumb w-16 h-16 object-cover rounded-lg cursor-pointer border-2 border-transparent opacity-40 hover:opacity-70 transition-all duration-200 flex-shrink-0"
                          data-index="{{ $index }}">
                 @endforeach
             </div>
@@ -233,13 +233,13 @@
         }
         #lightbox-thumbs-container {
             scrollbar-width: thin;
-            scrollbar-color: rgba(255,255,255,0.3) transparent;
+            scrollbar-color: rgba(0,0,0,0.2) transparent;
         }
         #lightbox-thumbs-container::-webkit-scrollbar {
             height: 4px;
         }
         #lightbox-thumbs-container::-webkit-scrollbar-thumb {
-            background: rgba(255,255,255,0.3);
+            background: rgba(0,0,0,0.2);
             border-radius: 2px;
         }
     </style>
