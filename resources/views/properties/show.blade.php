@@ -194,28 +194,28 @@
 
     <!-- Lightbox Modal -->
     <div id="lightbox" class="fixed inset-0 z-50 hidden" role="dialog" aria-modal="true" aria-label="معرض الصور">
-        <div class="absolute inset-0 bg-white" onclick="closeLightbox()"></div>
+        <div class="absolute inset-0 bg-white z-0" onclick="closeLightbox()"></div>
 
-        <button onclick="closeLightbox()" class="absolute top-4 left-4 z-10 text-gray-500 hover:text-gray-800 transition-colors bg-gray-100 hover:bg-gray-200 rounded-full w-12 h-12 flex items-center justify-center" aria-label="إغلاق">
+        <button onclick="closeLightbox()" class="absolute top-4 left-4 z-30 text-gray-500 hover:text-gray-800 transition-colors bg-gray-100 hover:bg-gray-200 rounded-full w-12 h-12 flex items-center justify-center" aria-label="إغلاق">
             <i class="ri-close-line text-2xl"></i>
         </button>
 
-        <div class="absolute top-4 right-4 z-10 text-gray-600 bg-gray-100 rounded-full px-4 py-2 text-sm">
+        <div class="absolute top-4 right-4 z-30 text-gray-600 bg-gray-100 rounded-full px-4 py-2 text-sm">
             <span id="lightbox-counter"></span>
         </div>
 
-        <button id="lightbox-prev" onclick="lightboxNav(-1)" class="absolute right-4 top-1/2 -translate-y-1/2 z-10 text-gray-500 hover:text-gray-800 transition-colors bg-gray-100 hover:bg-gray-200 rounded-full w-14 h-14 flex items-center justify-center" aria-label="السابق">
+        <button id="lightbox-prev" onclick="lightboxNav(-1)" class="absolute right-4 top-1/2 -translate-y-1/2 z-30 text-gray-500 hover:text-gray-800 transition-colors bg-gray-100 hover:bg-gray-200 rounded-full w-14 h-14 flex items-center justify-center" aria-label="السابق">
             <i class="ri-arrow-right-s-line text-3xl"></i>
         </button>
-        <button id="lightbox-next" onclick="lightboxNav(1)" class="absolute left-4 top-1/2 -translate-y-1/2 z-10 text-gray-500 hover:text-gray-800 transition-colors bg-gray-100 hover:bg-gray-200 rounded-full w-14 h-14 flex items-center justify-center" aria-label="التالي">
+        <button id="lightbox-next" onclick="lightboxNav(1)" class="absolute left-4 top-1/2 -translate-y-1/2 z-30 text-gray-500 hover:text-gray-800 transition-colors bg-gray-100 hover:bg-gray-200 rounded-full w-14 h-14 flex items-center justify-center" aria-label="التالي">
             <i class="ri-arrow-left-s-line text-3xl"></i>
         </button>
 
-        <div class="flex items-center justify-center h-full px-20 py-24 pointer-events-none">
-            <img id="lightbox-img" src="" alt="" class="max-w-full max-h-full object-contain rounded-lg transition-opacity duration-300 pointer-events-auto">
+        <div class="absolute inset-0 z-10 flex items-center justify-center px-20 py-24" onclick="closeLightbox()">
+            <img id="lightbox-img" src="" alt="" onclick="event.stopPropagation()" class="max-w-full max-h-full object-contain rounded-lg transition-opacity duration-300">
         </div>
 
-        <div id="lightbox-thumbs" class="absolute bottom-0 left-0 right-0 bg-gray-50 border-t border-gray-200 py-3 px-4" onclick="event.stopPropagation()">
+        <div id="lightbox-thumbs" class="absolute bottom-0 left-0 right-0 z-20 bg-gray-50 border-t border-gray-200 py-3 px-4" onclick="event.stopPropagation()">
             <div class="flex gap-2 justify-center overflow-x-auto max-w-4xl mx-auto" id="lightbox-thumbs-container">
                 @foreach($allImages as $index => $image)
                     <img src="{{ $image['url'] }}" alt="{{ $image['alt'] }}" onclick="goToSlide({{ $index }})"
