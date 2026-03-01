@@ -26,7 +26,7 @@
                     @forelse($services as $service)
                         <tr class="border-b border-gray-100 hover:bg-gray-50">
                             <td class="py-4 px-6">
-                                <div class="w-12 h-12 rounded-full flex items-center justify-center" style="background-color: {{ $service->icon_color == 'blue' ? '#3b82f6' : ($service->icon_color == 'green' ? '#10b981' : ($service->icon_color == 'purple' ? '#a855f7' : ($service->icon_color == 'orange' ? '#f97316' : ($service->icon_color == 'teal' ? '#14b8a6' : '#ef4444')))) }}">
+                                <div class="w-12 h-12 rounded-full flex items-center justify-center" style="background-color: {{ $service->icon_color == 'blue' ? '#3b82f6' : ($service->icon_color == 'green' ? '#10b981' : ($service->icon_color == 'purple' ? '#a855f7' : ($service->icon_color == 'orange' ? '#f05e22' : ($service->icon_color == 'teal' ? '#14b8a6' : '#ef4444')))) }}">
                                     <i class="{{ $service->icon }} text-2xl text-white"></i>
                                 </div>
                             </td>

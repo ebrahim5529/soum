@@ -12,7 +12,7 @@ export default {
     theme: {
         extend: {
             colors: {
-                primary: '#f97316', // برتقالي
+                primary: '#f05e22', // برتقالي
                 secondary: '#374151', // رصاصي غامق
             },
             borderRadius: {
