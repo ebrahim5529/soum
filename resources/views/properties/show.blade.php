@@ -12,9 +12,9 @@
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
                 <!-- Images -->
                 <div>
-                    <div class="bg-white rounded-2xl overflow-hidden shadow-lg mb-4 cursor-pointer group relative" onclick="openLightbox(0)">
-                        <img src="{{ $property->main_image_url }}" alt="{{ $property->title }}" class="w-full h-96 object-cover transition-transform duration-300 group-hover:scale-105">
-                        <div class="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300 flex items-center justify-center">
+                    <div class="rounded-2xl overflow-hidden mb-4 cursor-pointer group relative" onclick="openLightbox(0)">
+                        <img src="{{ $property->main_image_url }}" alt="{{ $property->title }}" class="w-full rounded-2xl">
+                        <div class="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300 flex items-center justify-center rounded-2xl">
                             <i class="ri-zoom-in-line text-white text-4xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></i>
                         </div>
                         @if($allImages->count() > 1)
@@ -26,11 +26,11 @@
                     @if($allImages->count() > 1)
                         <div class="grid grid-cols-4 gap-3">
                             @foreach($allImages->skip(1)->take(4)->values() as $thumbIdx => $image)
-                                <div class="relative cursor-pointer group rounded-xl overflow-hidden shadow" onclick="openLightbox({{ $thumbIdx + 1 }})">
-                                    <img src="{{ $image['url'] }}" alt="{{ $image['alt'] }}" class="w-full h-24 object-cover transition-transform duration-300 group-hover:scale-110">
-                                    <div class="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors duration-300"></div>
+                                <div class="relative cursor-pointer group rounded-xl overflow-hidden" onclick="openLightbox({{ $thumbIdx + 1 }})">
+                                    <img src="{{ $image['url'] }}" alt="{{ $image['alt'] }}" class="w-full h-24 object-cover rounded-xl">
+                                    <div class="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors duration-300 rounded-xl"></div>
                                     @if($loop->last && $allImages->count() > 5)
-                                        <div class="absolute inset-0 bg-black/50 flex items-center justify-center">
+                                        <div class="absolute inset-0 bg-black/50 flex items-center justify-center rounded-xl">
                                             <span class="text-white text-lg font-bold">+{{ $allImages->count() - 5 }}</span>
                                         </div>
                                     @endif
