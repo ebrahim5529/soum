@@ -80,12 +80,83 @@
                                     <span>{{ $property->bathrooms }} حمامات</span>
                                 </div>
                             @endif
+                            @if($property->license_number)
+                                <div class="flex items-center gap-2">
+                                    <i class="ri-file-shield-2-line"></i>
+                                    <span>رقم الترخيص: {{ $property->license_number }}</span>
+                                </div>
+                            @endif
                         </div>
 
                         @if($property->description)
                             <div class="mb-6">
                                 <h3 class="text-xl font-bold mb-2">الوصف</h3>
                                 <p class="text-gray-600">{{ $property->description }}</p>
+                            </div>
+                        @endif
+
+                        @if($property->videos->count() > 0)
+                            <div class="mb-6">
+                                <h3 class="text-xl font-bold mb-4">فيديوهات العقار</h3>
+                                <div class="space-y-4">
+                                    @foreach($property->videos as $video)
+                                        <div class="bg-gray-50 p-4 rounded-lg">
+                                            @if($video->title)
+                                                <h4 class="font-semibold text-gray-800 mb-2">{{ $video->title }}</h4>
+                                            @endif
+
+                                            @if($video->video_type === 'youtube')
+                                                <div class="video-container">
+                                                    <iframe width="100%" height="315"
+                                                        src="https://www.youtube.com/embed/{{ $video->getYouTubeVideoId() }}"
+                                                        frameborder="0"
+                                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                                        allowfullscreen
+                                                        class="rounded-lg">
+                                                    </iframe>
+                                                </div>
+                                            @elseif($video->video_type === 'vimeo')
+                                                <div class="video-container">
+                                                    <iframe width="100%" height="315"
+                                                        src="https://player.vimeo.com/video/{{ $video->getVimeoVideoId() }}"
+                                                        frameborder="0"
+                                                        allow="autoplay; fullscreen; picture-in-picture"
+                                                        allowfullscreen
+                                                        class="rounded-lg">
+                                                    </iframe>
+                                                </div>
+                                            @else
+                                                <div class="video-container">
+                                                    <video id="video-{{ $video->id }}" class="video-js vjs-default-skin vjs-big-play-centered" controls preload="metadata" style="width: 100%; max-height: 400px;">
+                                                        <source src="{{ $video->video_url }}" type="video/mp4">
+                                                        متصفحك لا يدعم تشغيل الفيديو.
+                                                    </video>
+                                                </div>
+                                                <script>
+                                                    document.addEventListener('DOMContentLoaded', function() {
+                                                        videojs('video-{{ $video->id }}', {
+                                                            fluid: true,
+                                                            responsive: true,
+                                                            playbackRates: [0.5, 1, 1.5, 2],
+                                                            controlBar: {
+                                                                children: [
+                                                                    'playToggle',
+                                                                    'progressControl',
+                                                                    'volumePanel',
+                                                                    'currentTimeDisplay',
+                                                                    'timeDivider',
+                                                                    'durationDisplay',
+                                                                    'playbackRateMenuButton',
+                                                                    'fullscreenToggle'
+                                                                ]
+                                                            }
+                                                        });
+                                                    });
+                                                </script>
+                                            @endif
+                                        </div>
+                                    @endforeach
+                                </div>
                             </div>
                         @endif
 

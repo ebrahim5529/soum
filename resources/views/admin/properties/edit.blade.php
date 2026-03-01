@@ -198,6 +198,50 @@
                 @error('images.*') <p class="text-red-500 text-sm mt-1">{{ $message }}</p> @enderror
             </div>
 
+            <!-- الفيديوهات الموجودة -->
+            @if($property->videos->count() > 0)
+                <div class="mb-6">
+                    <label class="block text-gray-700 font-semibold mb-2">الفيديوهات الحالية</label>
+                    <div class="space-y-3">
+                        @foreach($property->videos as $video)
+                            <div class="flex items-center justify-between bg-gray-50 p-3 rounded-lg border">
+                                <div class="flex-1">
+                                    <h4 class="font-medium">{{ $video->title ?: 'فيديو بدون عنوان' }}</h4>
+                                    <p class="text-sm text-gray-600">
+                                        @if($video->isExternalUrl())
+                                            رابط خارجي: {{ Str::limit($video->video_path, 50) }}
+                                        @else
+                                            ملف محلي
+                                        @endif
+                                    </p>
+                                </div>
+                                <label class="flex items-center gap-2 bg-red-500 text-white px-3 py-1 rounded text-sm cursor-pointer">
+                                    <input type="checkbox" name="delete_videos[]" value="{{ $video->id }}" class="w-4 h-4">
+                                    <span>حذف</span>
+                                </label>
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+            @endif
+
+            <div class="mb-6">
+                <div class="flex items-center justify-between mb-4">
+                    <label class="block text-gray-700 font-semibold">إضافة فيديوهات جديدة</label>
+                    <button type="button" id="add-video" class="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition-colors flex items-center gap-2">
+                        <i class="ri-add-line"></i>
+                        إضافة فيديو
+                    </button>
+                </div>
+
+                <div id="videos-container">
+                    <!-- Video entries will be added here dynamically -->
+                </div>
+
+                <p class="text-gray-500 text-sm mt-2">يمكن إضافة فيديوهات محلية أو روابط خارجية من YouTube، Vimeo إلخ</p>
+                @error('videos.*') <p class="text-red-500 text-sm mt-1">{{ $message }}</p> @enderror
+            </div>
+
             <div class="flex items-center gap-4">
                 <button type="submit" class="bg-primary text-white px-8 py-2 rounded-lg hover:bg-blue-700 transition-colors">
                     حفظ التعديلات
@@ -208,5 +252,81 @@
             </div>
         </form>
     </div>
+
+    <script>
+        let videoIndex = 0;
+
+        document.getElementById('add-video').addEventListener('click', function() {
+            addVideoField();
+        });
+
+        function addVideoField() {
+            const container = document.getElementById('videos-container');
+            const videoDiv = document.createElement('div');
+            videoDiv.className = 'video-entry bg-gray-50 p-4 rounded-lg mb-4 border';
+            videoDiv.innerHTML = `
+                <div class="flex items-center justify-between mb-3">
+                    <h4 class="font-semibold text-gray-700">فيديو ${videoIndex + 1}</h4>
+                    <button type="button" class="remove-video text-red-500 hover:text-red-700">
+                        <i class="ri-delete-bin-line"></i> حذف
+                    </button>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-3">
+                    <div>
+                        <label class="block text-gray-600 font-medium mb-1">عنوان الفيديو (اختياري)</label>
+                        <input type="text" name="videos[${videoIndex}][title]" placeholder="مثال: جولة في الغرفة الرئيسية"
+                            class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:border-primary focus:outline-none">
+                    </div>
+
+                    <div>
+                        <label class="block text-gray-600 font-medium mb-1">نوع الفيديو</label>
+                        <select name="videos[${videoIndex}][type]" class="video-type w-full border border-gray-300 rounded-lg px-3 py-2 focus:border-primary focus:outline-none">
+                            <option value="url">رابط خارجي</option>
+                            <option value="file">رفع ملف</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="video-url-field">
+                    <label class="block text-gray-600 font-medium mb-1">رابط الفيديو</label>
+                    <input type="url" name="videos[${videoIndex}][url]" placeholder="https://youtube.com/watch?v=..."
+                        class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:border-primary focus:outline-none">
+                    <p class="text-gray-500 text-sm mt-1">يمكن إدخال روابط من YouTube، Vimeo، إلخ</p>
+                </div>
+
+                <div class="video-file-field hidden">
+                    <label class="block text-gray-600 font-medium mb-1">ملف الفيديو</label>
+                    <input type="file" name="videos[${videoIndex}][file]" accept="video/*"
+                        class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:border-primary focus:outline-none">
+                    <p class="text-gray-500 text-sm mt-1">الحد الأقصى: 50 ميجابايت، صيغ مدعومة: MP4, MOV, AVI, WMV</p>
+                </div>
+            `;
+
+            container.appendChild(videoDiv);
+            videoIndex++;
+
+            // Add event listeners
+            const removeBtn = videoDiv.querySelector('.remove-video');
+            const videoTypeSelect = videoDiv.querySelector('.video-type');
+
+            removeBtn.addEventListener('click', function() {
+                videoDiv.remove();
+            });
+
+            videoTypeSelect.addEventListener('change', function() {
+                const urlField = videoDiv.querySelector('.video-url-field');
+                const fileField = videoDiv.querySelector('.video-file-field');
+
+                if (this.value === 'url') {
+                    urlField.classList.remove('hidden');
+                    fileField.classList.add('hidden');
+                } else {
+                    urlField.classList.add('hidden');
+                    fileField.classList.remove('hidden');
+                }
+            });
+        }
+    </script>
 </x-admin>
 

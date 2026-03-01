@@ -3,7 +3,7 @@
 @if($sliders && $sliders->count() > 0)
 <section class="slider-container h-[600px] relative">
     @foreach($sliders as $index => $slider)
-        <div class="slide {{ $index === 0 ? 'active' : '' }}" style="background-image: url('{{ $slider->background_image }}'); background-size: cover; background-position: center;">
+        <div class="slide {{ $index === 0 ? 'active' : '' }}" style="background-image: url('{{ $slider->background_image_url }}'); background-size: cover; background-position: center;">
             <div class="slide-overlay absolute inset-0"></div>
             <div class="slide-content absolute inset-0 flex items-center">
                 <div class="container mx-auto px-4">

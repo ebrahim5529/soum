@@ -22,4 +22,17 @@ class Slider extends Model
     {
         return $this->belongsTo(Property::class);
     }
+
+    public function getBackgroundImageUrlAttribute()
+    {
+        if (!$this->background_image) {
+            return asset('images/placeholder.jpg');
+        }
+
+        if (str_starts_with($this->background_image, 'http') || str_starts_with($this->background_image, '/')) {
+            return $this->background_image;
+        }
+
+        return asset('storage/' . $this->background_image);
+    }
 }

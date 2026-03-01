@@ -48,7 +48,7 @@ class SliderController extends Controller
 
         // رفع الصورة
         if ($request->hasFile('background_image')) {
-            $imagePath = $request->file('background_image')->store('sliders', 'public');
+            $imagePath = $request->file('background_image')->store('awareness-programs', 'public');
             $validated['background_image'] = $imagePath;
         }
 
@@ -93,7 +93,7 @@ class SliderController extends Controller
             if ($slider->background_image) {
                 Storage::disk('public')->delete($slider->background_image);
             }
-            $imagePath = $request->file('background_image')->store('sliders', 'public');
+            $imagePath = $request->file('background_image')->store('awareness-programs', 'public');
             $validated['background_image'] = $imagePath;
         }
 

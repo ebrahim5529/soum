@@ -7,6 +7,7 @@ use App\Models\City;
 use App\Models\Property;
 use App\Models\PropertyImage;
 use App\Models\PropertyType;
+use App\Models\PropertyVideo;
 use App\Models\ServiceType;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -53,6 +54,10 @@ class PropertyController extends Controller
             'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
             'images' => 'nullable|array',
             'images.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
+            'videos' => 'nullable|array',
+            'videos.*.url' => 'nullable|url',
+            'videos.*.file' => 'nullable|mimes:mp4,mov,avi,wmv|max:51200', // 50MB max
+            'videos.*.title' => 'nullable|string|max:255',
             'is_featured' => 'boolean',
         ]);
 
@@ -79,20 +84,46 @@ class PropertyController extends Controller
             }
         }
 
+        // رفع الفيديوهات
+        if ($request->has('videos')) {
+            foreach ($request->videos as $index => $videoData) {
+                $videoPath = null;
+                $title = $videoData['title'] ?? null;
+
+                // إذا كان ملف فيديو محلي
+                if (isset($videoData['file']) && $request->hasFile("videos.{$index}.file")) {
+                    $videoPath = $request->file("videos.{$index}.file")->store('property-videos', 'public');
+                }
+                // إذا كان رابط خارجي
+                elseif (isset($videoData['url']) && !empty($videoData['url'])) {
+                    $videoPath = $videoData['url'];
+                }
+
+                if ($videoPath) {
+                    PropertyVideo::create([
+                        'property_id' => $property->id,
+                        'video_path' => $videoPath,
+                        'title' => $title,
+                        'order' => $index,
+                    ]);
+                }
+            }
+        }
+
         return redirect()->route('admin.properties.index')
             ->with('success', 'تم إنشاء العقار بنجاح');
     }
 
     public function show(Property $property)
     {
-        $property->load(['propertyType', 'serviceType', 'city', 'images']);
+        $property->load(['propertyType', 'serviceType', 'city', 'images', 'videos']);
 
         return view('admin.properties.show', compact('property'));
     }
 
     public function edit(Property $property)
     {
-        $property->load('images');
+        $property->load(['images', 'videos']);
         $propertyTypes = PropertyType::all();
         $serviceTypes = ServiceType::all();
         $cities = City::all();
@@ -123,6 +154,11 @@ class PropertyController extends Controller
             'images' => 'nullable|array',
             'images.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
             'delete_images' => 'nullable|array',
+            'videos' => 'nullable|array',
+            'videos.*.url' => 'nullable|url',
+            'videos.*.file' => 'nullable|mimes:mp4,mov,avi,wmv|max:51200', // 50MB max
+            'videos.*.title' => 'nullable|string|max:255',
+            'delete_videos' => 'nullable|array',
             'is_featured' => 'boolean',
         ]);
 
@@ -163,6 +199,47 @@ class PropertyController extends Controller
             }
         }
 
+        // حذف الفيديوهات المحددة
+        if ($request->has('delete_videos')) {
+            foreach ($request->delete_videos as $videoId) {
+                $video = PropertyVideo::find($videoId);
+                if ($video) {
+                    // حذف الملف إذا كان محلي
+                    if (!$video->isExternalUrl()) {
+                        Storage::disk('public')->delete($video->video_path);
+                    }
+                    $video->delete();
+                }
+            }
+        }
+
+        // رفع فيديوهات جديدة
+        if ($request->has('videos')) {
+            $lastOrder = PropertyVideo::where('property_id', $property->id)->max('order') ?? -1;
+            foreach ($request->videos as $index => $videoData) {
+                $videoPath = null;
+                $title = $videoData['title'] ?? null;
+
+                // إذا كان ملف فيديو محلي
+                if (isset($videoData['file']) && $request->hasFile("videos.{$index}.file")) {
+                    $videoPath = $request->file("videos.{$index}.file")->store('property-videos', 'public');
+                }
+                // إذا كان رابط خارجي
+                elseif (isset($videoData['url']) && !empty($videoData['url'])) {
+                    $videoPath = $videoData['url'];
+                }
+
+                if ($videoPath) {
+                    PropertyVideo::create([
+                        'property_id' => $property->id,
+                        'video_path' => $videoPath,
+                        'title' => $title,
+                        'order' => $lastOrder + $index + 1,
+                    ]);
+                }
+            }
+        }
+
         return redirect()->route('admin.properties.index')
             ->with('success', 'تم تحديث العقار بنجاح');
     }
@@ -176,6 +253,13 @@ class PropertyController extends Controller
 
         foreach ($property->images as $image) {
             Storage::disk('public')->delete($image->image_path);
+        }
+
+        // حذف الفيديوهات
+        foreach ($property->videos as $video) {
+            if (!$video->isExternalUrl()) {
+                Storage::disk('public')->delete($video->video_path);
+            }
         }
 
         $property->delete();

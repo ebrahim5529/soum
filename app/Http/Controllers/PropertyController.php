@@ -79,7 +79,7 @@ class PropertyController extends Controller
     public function show(Property $property)
     {
         try {
-            $property->load(['propertyType', 'serviceType', 'city', 'images']);
+            $property->load(['propertyType', 'serviceType', 'city', 'images', 'videos']);
         } catch (\Exception $e) {
             abort(404);
         }

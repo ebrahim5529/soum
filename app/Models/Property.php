@@ -41,6 +41,11 @@ class Property extends Model
         return $this->hasMany(PropertyImage::class)->orderBy('order');
     }
 
+    public function videos(): HasMany
+    {
+        return $this->hasMany(PropertyVideo::class)->orderBy('order');
+    }
+
     /**
      * Get the full URL for the main image
      */
@@ -50,11 +55,10 @@ class Property extends Model
             return asset('images/placeholder.jpg');
         }
 
-        // If it's already a full URL, return it
         if (str_starts_with($this->image, 'http') || str_starts_with($this->image, '/')) {
             return $this->image;
         }
 
-        return route('images.show', ['path' => $this->image]);
+        return asset('storage/' . $this->image);
     }
 }

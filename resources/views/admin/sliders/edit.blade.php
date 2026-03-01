@@ -107,7 +107,7 @@
                 <label class="block text-gray-700 font-semibold mb-2">صورة الخلفية</label>
                 @if($slider->background_image)
                     <div class="mb-3">
-                        <img src="{{ asset('storage/' . $slider->background_image) }}" alt="الصورة الحالية" class="w-64 h-32 object-cover rounded-lg">
+                        <img src="{{ $slider->background_image_url }}" alt="الصورة الحالية" class="w-64 h-32 object-cover rounded-lg">
                     </div>
                 @endif
                 <input type="file" name="background_image" accept="image/*"
