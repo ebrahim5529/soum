@@ -1,17 +1,40 @@
 <x-main>
 
+    @php
+        $allImages = collect([['url' => $property->main_image_url, 'alt' => $property->title]]);
+        foreach ($property->images as $img) {
+            $allImages->push(['url' => $img->image_url, 'alt' => $property->title]);
+        }
+    @endphp
+
     <section class="py-16 bg-gray-50">
         <div class="container mx-auto px-4">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
                 <!-- Images -->
                 <div>
-                    <div class="bg-white rounded-2xl overflow-hidden shadow-lg mb-4">
-                        <img src="{{ $property->main_image_url }}" alt="{{ $property->title }}" class="w-full h-96 object-cover">
+                    <div class="bg-white rounded-2xl overflow-hidden shadow-lg mb-4 cursor-pointer group relative" onclick="openLightbox(0)">
+                        <img src="{{ $property->main_image_url }}" alt="{{ $property->title }}" class="w-full h-96 object-cover transition-transform duration-300 group-hover:scale-105">
+                        <div class="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300 flex items-center justify-center">
+                            <i class="ri-zoom-in-line text-white text-4xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></i>
+                        </div>
+                        @if($allImages->count() > 1)
+                            <span class="absolute bottom-3 left-3 bg-black/60 text-white text-sm px-3 py-1 rounded-full backdrop-blur-sm">
+                                <i class="ri-image-line ml-1"></i> {{ $allImages->count() }} صور
+                            </span>
+                        @endif
                     </div>
-                    @if($property->images->count() > 0)
-                        <div class="grid grid-cols-4 gap-4">
-                            @foreach($property->images->take(4) as $image)
-                                <img src="{{ $image->image_url }}" alt="{{ $property->title }}" class="w-full h-24 object-cover rounded-lg">
+                    @if($allImages->count() > 1)
+                        <div class="grid grid-cols-4 gap-3">
+                            @foreach($allImages->skip(1)->take(4)->values() as $thumbIdx => $image)
+                                <div class="relative cursor-pointer group rounded-xl overflow-hidden shadow" onclick="openLightbox({{ $thumbIdx + 1 }})">
+                                    <img src="{{ $image['url'] }}" alt="{{ $image['alt'] }}" class="w-full h-24 object-cover transition-transform duration-300 group-hover:scale-110">
+                                    <div class="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors duration-300"></div>
+                                    @if($loop->last && $allImages->count() > 5)
+                                        <div class="absolute inset-0 bg-black/50 flex items-center justify-center">
+                                            <span class="text-white text-lg font-bold">+{{ $allImages->count() - 5 }}</span>
+                                        </div>
+                                    @endif
+                                </div>
                             @endforeach
                         </div>
                     @endif
@@ -168,5 +191,118 @@
             </div>
         </div>
     </section>
+
+    <!-- Lightbox Modal -->
+    <div id="lightbox" class="fixed inset-0 z-50 hidden" role="dialog" aria-modal="true" aria-label="معرض الصور">
+        <div class="absolute inset-0 bg-black/90 backdrop-blur-sm" onclick="closeLightbox()"></div>
+
+        <button onclick="closeLightbox()" class="absolute top-4 left-4 z-10 text-white/80 hover:text-white transition-colors bg-white/10 hover:bg-white/20 rounded-full w-12 h-12 flex items-center justify-center" aria-label="إغلاق">
+            <i class="ri-close-line text-2xl"></i>
+        </button>
+
+        <div class="absolute top-4 right-4 z-10 text-white/80 bg-white/10 rounded-full px-4 py-2 text-sm backdrop-blur-sm">
+            <span id="lightbox-counter"></span>
+        </div>
+
+        <button id="lightbox-prev" onclick="lightboxNav(-1)" class="absolute right-4 top-1/2 -translate-y-1/2 z-10 text-white/80 hover:text-white transition-colors bg-white/10 hover:bg-white/20 rounded-full w-14 h-14 flex items-center justify-center" aria-label="السابق">
+            <i class="ri-arrow-right-s-line text-3xl"></i>
+        </button>
+        <button id="lightbox-next" onclick="lightboxNav(1)" class="absolute left-4 top-1/2 -translate-y-1/2 z-10 text-white/80 hover:text-white transition-colors bg-white/10 hover:bg-white/20 rounded-full w-14 h-14 flex items-center justify-center" aria-label="التالي">
+            <i class="ri-arrow-left-s-line text-3xl"></i>
+        </button>
+
+        <div class="flex items-center justify-center h-full px-20 py-24">
+            <img id="lightbox-img" src="" alt="" class="max-w-full max-h-full object-contain rounded-lg shadow-2xl transition-opacity duration-300">
+        </div>
+
+        <div id="lightbox-thumbs" class="absolute bottom-0 left-0 right-0 bg-black/60 backdrop-blur-sm py-3 px-4">
+            <div class="flex gap-2 justify-center overflow-x-auto max-w-4xl mx-auto" id="lightbox-thumbs-container">
+                @foreach($allImages as $index => $image)
+                    <img src="{{ $image['url'] }}" alt="{{ $image['alt'] }}" onclick="goToSlide({{ $index }})"
+                         class="lightbox-thumb w-16 h-16 object-cover rounded-lg cursor-pointer border-2 border-transparent opacity-50 hover:opacity-80 transition-all duration-200 flex-shrink-0"
+                         data-index="{{ $index }}">
+                @endforeach
+            </div>
+        </div>
+    </div>
+
+    <style>
+        .lightbox-thumb.active {
+            border-color: #f97316 !important;
+            opacity: 1 !important;
+        }
+        #lightbox-thumbs-container {
+            scrollbar-width: thin;
+            scrollbar-color: rgba(255,255,255,0.3) transparent;
+        }
+        #lightbox-thumbs-container::-webkit-scrollbar {
+            height: 4px;
+        }
+        #lightbox-thumbs-container::-webkit-scrollbar-thumb {
+            background: rgba(255,255,255,0.3);
+            border-radius: 2px;
+        }
+    </style>
+
+    <script>
+        const lightboxImages = @json($allImages->values());
+        let currentIndex = 0;
+
+        function openLightbox(index) {
+            currentIndex = index;
+            document.getElementById('lightbox').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+            updateLightbox();
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox').classList.add('hidden');
+            document.body.style.overflow = '';
+        }
+
+        function lightboxNav(dir) {
+            currentIndex = (currentIndex + dir + lightboxImages.length) % lightboxImages.length;
+            updateLightbox();
+        }
+
+        function goToSlide(index) {
+            currentIndex = index;
+            updateLightbox();
+        }
+
+        function updateLightbox() {
+            const img = document.getElementById('lightbox-img');
+            img.style.opacity = '0';
+            setTimeout(() => {
+                img.src = lightboxImages[currentIndex].url;
+                img.alt = lightboxImages[currentIndex].alt;
+                img.style.opacity = '1';
+            }, 150);
+
+            document.getElementById('lightbox-counter').textContent =
+                `${currentIndex + 1} / ${lightboxImages.length}`;
+
+            document.querySelectorAll('.lightbox-thumb').forEach(thumb => {
+                thumb.classList.toggle('active', parseInt(thumb.dataset.index) === currentIndex);
+            });
+
+            const activeThumb = document.querySelector('.lightbox-thumb.active');
+            if (activeThumb) {
+                activeThumb.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+            }
+
+            document.getElementById('lightbox-prev').style.display = lightboxImages.length <= 1 ? 'none' : '';
+            document.getElementById('lightbox-next').style.display = lightboxImages.length <= 1 ? 'none' : '';
+        }
+
+        document.addEventListener('keydown', function(e) {
+            const lightbox = document.getElementById('lightbox');
+            if (lightbox.classList.contains('hidden')) return;
+
+            if (e.key === 'Escape') closeLightbox();
+            if (e.key === 'ArrowLeft') lightboxNav(1);
+            if (e.key === 'ArrowRight') lightboxNav(-1);
+        });
+    </script>
 </x-main>
 
