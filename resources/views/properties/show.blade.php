@@ -211,11 +211,11 @@
             <i class="ri-arrow-left-s-line text-3xl"></i>
         </button>
 
-        <div class="flex items-center justify-center h-full px-20 py-24">
-            <img id="lightbox-img" src="" alt="" class="max-w-full max-h-full object-contain rounded-lg transition-opacity duration-300">
+        <div class="flex items-center justify-center h-full px-20 py-24 pointer-events-none">
+            <img id="lightbox-img" src="" alt="" class="max-w-full max-h-full object-contain rounded-lg transition-opacity duration-300 pointer-events-auto">
         </div>
 
-        <div id="lightbox-thumbs" class="absolute bottom-0 left-0 right-0 bg-gray-50 border-t border-gray-200 py-3 px-4">
+        <div id="lightbox-thumbs" class="absolute bottom-0 left-0 right-0 bg-gray-50 border-t border-gray-200 py-3 px-4" onclick="event.stopPropagation()">
             <div class="flex gap-2 justify-center overflow-x-auto max-w-4xl mx-auto" id="lightbox-thumbs-container">
                 @foreach($allImages as $index => $image)
                     <img src="{{ $image['url'] }}" alt="{{ $image['alt'] }}" onclick="goToSlide({{ $index }})"
