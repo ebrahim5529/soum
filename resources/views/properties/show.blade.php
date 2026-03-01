@@ -204,10 +204,10 @@
             <span id="lightbox-counter"></span>
         </div>
 
-        <button id="lightbox-prev" onclick="lightboxNav(-1)" class="absolute right-4 top-1/2 -translate-y-1/2 z-30 text-gray-500 hover:text-gray-800 transition-colors bg-gray-100 hover:bg-gray-200 rounded-full w-14 h-14 flex items-center justify-center" aria-label="السابق">
+        <button id="lightbox-prev" onclick="lightboxNav(-1)" class="absolute right-6 top-1/2 -translate-y-1/2 z-30 text-white hover:text-white transition-all bg-primary/80 hover:bg-primary rounded-full w-14 h-14 flex items-center justify-center shadow-lg" aria-label="السابق">
             <i class="ri-arrow-right-s-line text-3xl"></i>
         </button>
-        <button id="lightbox-next" onclick="lightboxNav(1)" class="absolute left-4 top-1/2 -translate-y-1/2 z-30 text-gray-500 hover:text-gray-800 transition-colors bg-gray-100 hover:bg-gray-200 rounded-full w-14 h-14 flex items-center justify-center" aria-label="التالي">
+        <button id="lightbox-next" onclick="lightboxNav(1)" class="absolute left-6 top-1/2 -translate-y-1/2 z-30 text-white hover:text-white transition-all bg-primary/80 hover:bg-primary rounded-full w-14 h-14 flex items-center justify-center shadow-lg" aria-label="التالي">
             <i class="ri-arrow-left-s-line text-3xl"></i>
         </button>
 
