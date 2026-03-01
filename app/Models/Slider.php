@@ -33,6 +33,6 @@ class Slider extends Model
             return $this->background_image;
         }
 
-        return asset('storage/' . $this->background_image);
+        return url('/images/' . $this->background_image);
     }
 }

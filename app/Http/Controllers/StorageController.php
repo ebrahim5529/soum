@@ -18,7 +18,7 @@ class StorageController extends Controller
     public function show(Request $request, string $path)
     {
         // Ensure the path is safe and within our expected directories
-        $allowedPaths = ['awareness-programs', 'sliders', 'properties'];
+        $allowedPaths = ['awareness-programs', 'property-videos'];
 
         $pathParts = explode('/', $path);
         $baseDir = $pathParts[0] ?? '';

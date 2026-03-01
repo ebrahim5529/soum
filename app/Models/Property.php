@@ -59,6 +59,6 @@ class Property extends Model
             return $this->image;
         }
 
-        return asset('storage/' . $this->image);
+        return url('/images/' . $this->image);
     }
 }

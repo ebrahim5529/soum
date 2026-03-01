@@ -28,6 +28,6 @@ class PropertyImage extends Model
             return $this->image_path;
         }
 
-        return asset('storage/' . $this->image_path);
+        return url('/images/' . $this->image_path);
     }
 }
