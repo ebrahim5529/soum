@@ -88,21 +88,21 @@ class Property extends Model
         if ($input === '') return '';
 
         // Extract URL from embed iframe: src="...".
-        if (preg_match('/src=["\']([^"\']*google\.com\/maps[^"\']*)["\']/', $input, $m)) {
+        if (preg_match('~src=["\']([^"\']*google\.com/maps[^"\']*)["\']~', $input, $m)) {
             $input = html_entity_decode($m[1]);
         }
 
         // Already a direct place URL: https://www.google.com/maps/place/26.091855,43.980515 or place/Name/@lat,lng
-        if (preg_match('#https?://(?:www\.)?google\.com/maps/place/[^?&\#\s]+#', $input, $m)) {
-            return preg_replace('/[?&].*$/', '', $m[0]);
+        if (preg_match('~https?://(?:www\.)?google\.com/maps/place/[^?&\s]+~', $input, $m)) {
+            return preg_replace('~[?&].*$~', '', $m[0]);
         }
 
         // Extract coordinates lat,lng (e.g. 26.091855,43.980515)
-        if (preg_match('/(-?\d+\.\d+),\s*(-?\d+\.\d+)/', $input, $m)) {
+        if (preg_match('~(-?\d+\.\d+),\s*(-?\d+\.\d+)~', $input, $m)) {
             return 'https://www.google.com/maps/place/' . $m[1] . ',' . $m[2];
         }
 
-        // General maps URL (use ~ delimiter to avoid conflict with # in URLs)
+        // General maps URL
         if (preg_match('~(https?://(?:www\.)?google\.com/maps[^\s"\'<>]+)~', $input, $m)) {
             return $m[1];
         }
