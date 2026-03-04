@@ -61,4 +61,52 @@ class Property extends Model
 
         return url('/images/' . $this->image);
     }
+
+    /**
+     * Get the Google Maps URL for navigation - uses google_map_url if set, otherwise builds from address
+     */
+    public function getGoogleMapsLinkAttribute(): string
+    {
+        $input = trim((string) $this->attributes['google_map_url'] ?? '');
+        if ($input !== '') {
+            $url = $this->extractGoogleMapsUrl($input);
+            if ($url !== '') {
+                return $url;
+            }
+        }
+
+        $address = $this->city->name . ($this->district ? ' - ' . $this->district : '') . '، السعودية';
+        return 'https://www.google.com/maps/search/?api=1&query=' . urlencode($address);
+    }
+
+    /**
+     * Extract a clean Google Maps place URL from various input formats
+     */
+    protected function extractGoogleMapsUrl(string $input): string
+    {
+        $input = trim($input);
+        if ($input === '') return '';
+
+        // Extract URL from embed iframe: src="...".
+        if (preg_match('/src=["\']([^"\']*google\.com\/maps[^"\']*)["\']/', $input, $m)) {
+            $input = html_entity_decode($m[1]);
+        }
+
+        // Already a direct place URL: https://www.google.com/maps/place/26.091855,43.980515 or place/Name/@lat,lng
+        if (preg_match('#https?://(?:www\.)?google\.com/maps/place/[^?&#\s]+#', $input, $m)) {
+            return preg_replace('/[?&].*$/', '', $m[0]);
+        }
+
+        // Extract coordinates lat,lng (e.g. 26.091855,43.980515)
+        if (preg_match('/(-?\d+\.\d+),\s*(-?\d+\.\d+)/', $input, $m)) {
+            return 'https://www.google.com/maps/place/' . $m[1] . ',' . $m[2];
+        }
+
+        // General maps URL
+        if (preg_match('#(https?://(?:www\.)?google\.com/maps[^\s"\'<>]+)#', $input, $m)) {
+            return $m[1];
+        }
+
+        return '';
+    }
 }

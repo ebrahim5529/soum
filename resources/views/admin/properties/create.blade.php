@@ -152,9 +152,16 @@
 
             <div class="mb-6">
                 <label class="block text-gray-700 font-semibold mb-2">موقع Google Maps</label>
-                <textarea name="google_map_url" rows="3" placeholder="أدخل رابط Google Maps أو كود embed"
+                <textarea id="google_map_url" name="google_map_url" rows="3" placeholder="أدخل رابط Google Maps أو كود embed، مثال: https://www.google.com/maps/place/26.091855,43.980515"
                     class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:border-primary focus:outline-none">{{ old('google_map_url') }}</textarea>
-                <p class="text-gray-500 text-sm mt-1">يمكنك إدخال رابط Google Maps أو كود embed</p>
+                <div class="flex items-center gap-3 mt-2">
+                    <button type="button" id="preview-map-btn" class="inline-flex items-center gap-2 text-primary hover:text-primary/80 text-sm font-medium"
+                        title="فتح الموقع في نافذة جديدة">
+                        <i class="ri-external-link-line"></i>
+                        <span>معاينة الموقع</span>
+                    </button>
+                    <span class="text-gray-500 text-sm">أدخل الرابط أعلاه ثم انقر للمعاينة</span>
+                </div>
                 @error('google_map_url') <p class="text-red-500 text-sm mt-1">{{ $message }}</p> @enderror
             </div>
 
@@ -203,6 +210,35 @@
 
     <script>
         let videoIndex = 0;
+
+        document.getElementById('preview-map-btn').addEventListener('click', function() {
+            const textarea = document.getElementById('google_map_url');
+            let input = (textarea.value || '').trim();
+            if (!input) {
+                alert('أدخل رابط Google Maps أولاً');
+                return;
+            }
+            let url = '';
+            const srcMatch = input.match(/src=["']([^"']*google\.com\/maps[^"']*)["']/);
+            if (srcMatch) input = srcMatch[1];
+            const placeMatch = input.match(/https?:\/\/(?:www\.)?google\.com\/maps\/place\/[\d.,\-]+/);
+            if (placeMatch) {
+                url = placeMatch[0].replace(/[?&].*$/, '');
+            } else {
+                const coordsMatch = input.match(/(-?\d+\.\d+),\s*(-?\d+\.\d+)/);
+                if (coordsMatch) {
+                    url = 'https://www.google.com/maps/place/' + coordsMatch[1] + ',' + coordsMatch[2];
+                } else {
+                    const mapsMatch = input.match(/(https?:\/\/(?:www\.)?google\.com\/maps[^\s"'<>]+)/);
+                    url = mapsMatch ? mapsMatch[1] : '';
+                }
+            }
+            if (url) {
+                window.open(url, '_blank', 'noopener,noreferrer');
+            } else {
+                alert('لم يتم العثور على رابط صالح. استخدم صيغة مثل: https://www.google.com/maps/place/26.091855,43.980515');
+            }
+        });
 
         document.getElementById('add-video').addEventListener('click', function() {
             addVideoField();

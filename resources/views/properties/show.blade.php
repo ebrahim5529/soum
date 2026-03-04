@@ -67,11 +67,7 @@
                                 <i class="ri-map-pin-line text-primary"></i>
                                 <span>{{ $property->city->name }} - {{ $property->district }}</span>
                             </div>
-                            @php
-                                $address = $property->city->name . ($property->district ? ' - ' . $property->district : '') . '، السعودية';
-                                $googleMapsUrl = 'https://www.google.com/maps/search/?api=1&query=' . urlencode($address);
-                            @endphp
-                            <a href="{{ $googleMapsUrl }}" target="_blank" rel="noopener noreferrer" 
+                            <a href="{{ $property->google_maps_link }}" target="_blank" rel="noopener noreferrer" 
                                class="inline-flex items-center gap-2 bg-primary text-white px-6 py-2 !rounded-button hover:bg-orange-600 transition-colors">
                                 <i class="ri-map-2-line"></i>
                                 <span>عرض موقع العقار على الخريطة</span>
