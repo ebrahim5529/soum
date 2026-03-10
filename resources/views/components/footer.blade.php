@@ -3,7 +3,7 @@
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             <div>
                 <a href="{{ route('home') }}" class="inline-block mb-4">
-                    <img src="{{ asset('build/assets/logo.svg') }}" alt="سوم العقارية" class="h-12 w-auto object-contain" style="max-width: 150px; filter: brightness(1.2);">
+                    <img src="{{ asset('images/logo.svg') }}" alt="سوم العقارية" class="h-12 w-auto object-contain" style="max-width: 150px; filter: brightness(1.2);">
                 </a>
                 <p class="text-gray-300 mb-4">شركة المشحن والعتيبي للاستثمار العقاري .. خبرة تحدث الفرق،ثقة تبنى على ارض صلبة، فريق متفاني لخدمة متكاملة</p>
                 <div class="flex gap-4">

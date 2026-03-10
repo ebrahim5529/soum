@@ -3,7 +3,7 @@
         <div class="flex items-center justify-between h-20">
             <div class="flex items-center gap-8">
                 <a href="{{ route('home') }}" class="flex items-center">
-                    <img src="{{ asset('build/assets/logo.svg') }}" alt="سوم العقارية" class="h-20 w-auto object-contain" style="max-width: 220px;">
+                    <img src="{{ asset('images/logo.svg') }}" alt="سوم العقارية" class="h-20 w-auto object-contain" style="max-width: 220px;">
                 </a>
                 <nav class="hidden md:flex items-center gap-6">
                     <a href="{{ route('home') }}" class="text-white hover:text-white/80 transition-colors">الرئيسية</a>

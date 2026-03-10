@@ -58,7 +58,7 @@
                         <div class="text-4xl font-bold text-primary mb-6">
                             {{ number_format($property->price, 0) }} ريال
                             @if($property->serviceType->name === 'للإيجار')
-                                /شهر
+                            
                             @endif
                         </div>
 

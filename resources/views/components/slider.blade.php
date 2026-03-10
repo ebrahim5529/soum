@@ -42,7 +42,14 @@
                             @if($slider->location)
                                 <div class="flex items-center gap-2">
                                     <i class="ri-map-pin-line"></i>
-                                    <span>{{ $slider->location }}</span>
+                                    @if(Str::startsWith(trim($slider->location), ['http://', 'https://']))
+                                        <a href="{{ $slider->location }}" target="_blank" rel="noopener noreferrer" class="text-white hover:underline inline-flex items-center gap-1">
+                                            عرض على الخريطة
+                                            <i class="ri-external-link-line text-sm"></i>
+                                        </a>
+                                    @else
+                                        <span>{{ $slider->location }}</span>
+                                    @endif
                                 </div>
                             @endif
                             @if($slider->area)

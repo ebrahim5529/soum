@@ -1,1 +1,1 @@
-<img src="{{ asset('build/assets/logo.svg') }}" alt="سوم العقارية" {{ $attributes }}>
+<img src="{{ asset('images/logo.svg') }}" alt="سوم العقارية" {{ $attributes }}>
